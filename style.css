@@ -1,17 +1,77 @@
-.menu_lateral {}
+main {
+    flex: 1;
+}
+
+.barra_pesquisa {
+    display: flex;
+    padding: 20px;
+    background-color: #312744;
+    border: 2px solid #ede7b1;
+    border-outline-bottom-style: 4px solid #f44336;
+}
+
+.barra_pesquisa input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    background-color: #fff;
+}
+
+.barra_pesquisa button {
+    background: none;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    background-color: #fff;
+}
+
+.icone {
+    height: 16px;
+    width: 16px;
+}
+
+body {
+    margin: 0;
+    display: flex;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu_lateral {
+    width: 250px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #312744;
+    border: 2px solid #ede7b1;
+}
+
+.menu_lista {
+    margin-top: 80px;
+    align-content: center;
+}
 
 .menu_item {
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
     padding: 20px;
-    background-color: #1e1928;
-    border: 1px solid black;
-    width: 200px;
-    list-style-type: none;
-    color: white;
+    color: #fff;
+
+    text-decoration: none;
     text-align: center;
+
 }
 
 .menu_item:hover {
-    background-color: #f0f0f0;
-    color: black;
+    background-color: #f44336;
+    color: #fff;
     cursor: pointer;
+    border: 1px solid #ffcb05;
 }

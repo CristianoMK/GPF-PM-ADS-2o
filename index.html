@@ -9,15 +9,41 @@
 </head>
 
 <body>
-    <section class="menu_lateral">
-        <ul class="menu_opcoes">
-            <li class="menu_item">MENU PRINCIPAL</li>
-            <li class="menu_item">POKEDEX</li>
-            <li class="menu_item">ITENS</li>
-            <li class="menu_item">MAPA</li>
-            <li class="menu_item">CONFIGURAÇÕES</li>
-        </ul>
-    </section>
-    <main></main>
+
+    <aside class="menu_lateral">
+
+        <nav>
+
+            <ul class="menu_lista">
+
+                <li><a href="#" class="menu_item">MENU PRINCIPAL</a></li>
+                <li><a href="#" class="menu_item">POKEDEX</a></li>
+                <li><a href="#" class="menu_item">ITENS</a></li>
+                <li><a href="#" class="menu_item">MAPA</a></li>
+                <li><a href="#" class="menu_item">CONFIGURAÇÕES</a></li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+
+    <main>
+        <section class="barra_pesquisa">
+            <input type="text" placeholder="Pesquisar Pokemons, Ginásios, Itens...">
+
+            <button type="submit">
+                <img src="./assets/sprites/lupa_icone.png" class="icone" alt="Lupa">
+            </button>
+
+        </section>
+        <h1>Bem-vindo à Pokedex!</h1>
+        <p>Explore o mundo dos Pokémon e descubra informações sobre suas criaturas favoritas.</p>
+        <h2>Você pesquisou:</h2>
+        <p class="pesquisa_resultado" id="pesquisou_um"></p>
+    </main>
+
     <footer></footer>
+    <script src="script.js"></script>
 </body>
