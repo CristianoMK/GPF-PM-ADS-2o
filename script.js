@@ -12,7 +12,10 @@ function descobrirArquivoAtual(caminho) { //descobre qual arquivo esta sendo exe
 }
 
 opcoesMenu.forEach(function (opcao) {
-    console.log(opcao.href)
+    let opcComp = descobrirArquivoAtual(opcao.pathname);
+    if (opcComp == arquivoAtual) {
+        opcao.classList.add('ativo');
+    }
 })
 
 botao.addEventListener('click', function () {
