@@ -11,10 +11,12 @@ function descobrirArquivoAtual(caminho) { //descobre qual arquivo esta sendo exe
     return caminho[ultimaPosicao];
 }
 
-botao.addEventListener('click', function () {
-    console.log(input.value);
-    document.getElementById('pesquisou_um').innerText = input.value
-});
+if (input && botao) {
+    botao.addEventListener('click', function () {
+        console.log(input.value);
+        document.getElementById('pesquisou_um').innerText = input.value
+    });
+}
 
 fetch('menu.html')
     .then(function (resposta) {
@@ -34,4 +36,3 @@ fetch('menu.html')
             }
         })
     })
-
