@@ -1,0 +1,1616 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Aliança Jurídica - Serviços jurídicos, áreas de atuação e contato."
+  >
+
+  <title>Aliança Jurídica | Advocacia</title>
+
+  <style>
+    :root {
+      --azul: #102a43;
+      --azul-escuro: #071a2b;
+      --dourado: #c9a45c;
+      --dourado-claro: #e3c985;
+      --branco: #ffffff;
+      --cinza: #f4f6f8;
+      --texto: #243447;
+      --texto-claro: #66788a;
+      --borda: #e1e7ed;
+      --sombra: 0 15px 40px rgba(7, 26, 43, 0.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: var(--branco);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      background: rgba(7, 26, 43, 0.96);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      min-height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      color: white;
+
+      font-weight: bold;
+      font-size: 1.35rem;
+
+      letter-spacing: .5px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+
+      border: 2px solid var(--dourado);
+
+      display: grid;
+      place-items: center;
+
+      color: var(--dourado);
+
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+
+      border-radius: 50%;
+    }
+
+    nav ul {
+      display: flex;
+
+      list-style: none;
+
+      gap: 28px;
+    }
+
+    nav a {
+      color: #eaf0f5;
+
+      font-size: .95rem;
+
+      transition: .25s;
+    }
+
+    nav a:hover {
+      color: var(--dourado-claro);
+    }
+
+    .menu-btn {
+      display: none;
+
+      background: none;
+      border: 0;
+
+      color: white;
+
+      font-size: 1.7rem;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      padding-top: 76px;
+
+      display: flex;
+      align-items: center;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(7,26,43,.97),
+          rgba(16,42,67,.90)
+        );
+
+      color: white;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "⚖";
+
+      position: absolute;
+
+      right: 7%;
+      bottom: -60px;
+
+      font-family: Georgia, serif;
+
+      font-size: 27rem;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 700px;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: var(--dourado-claro);
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: .78rem;
+
+      font-weight: bold;
+
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+
+      line-height: 1.02;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--dourado-claro);
+    }
+
+    .hero p {
+      max-width: 650px;
+
+      color: #dce6ee;
+
+      font-size: 1.12rem;
+
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 14px 24px;
+
+      border-radius: 5px;
+
+      font-weight: bold;
+
+      border: 1px solid transparent;
+
+      transition: .25s;
+
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--dourado);
+
+      color: var(--azul-escuro);
+    }
+
+    .btn-primary:hover {
+      background: var(--dourado-claro);
+
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.35);
+
+      color: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--dourado);
+
+      color: var(--dourado-claro);
+    }
+
+    /* =========================
+       SEÇÕES
+    ========================= */
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-title {
+      text-align: center;
+
+      max-width: 720px;
+
+      margin: 0 auto 55px;
+    }
+
+    .section-title .eyebrow {
+      color: #927335;
+
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+
+      color: var(--azul-escuro);
+
+      font-size: clamp(2rem, 4vw, 3rem);
+
+      line-height: 1.15;
+
+      margin-bottom: 16px;
+    }
+
+    .section-title p {
+      color: var(--texto-claro);
+    }
+
+    /* =========================
+       SOBRE
+    ========================= */
+
+    .about {
+      background: var(--cinza);
+    }
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 55px;
+
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--azul);
+
+      color: white;
+
+      min-height: 390px;
+
+      border-radius: 10px;
+
+      padding: 45px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      box-shadow: var(--sombra);
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: "§";
+
+      position: absolute;
+
+      right: 25px;
+      top: 5px;
+
+      font: 13rem Georgia, serif;
+
+      color: rgba(255,255,255,.05);
+    }
+
+    .about-card h3 {
+      font: 2rem Georgia, serif;
+
+      margin-bottom: 18px;
+
+      position: relative;
+    }
+
+    .about-card p {
+      color: #d7e2eb;
+
+      position: relative;
+    }
+
+    .about-text p {
+      color: var(--texto-claro);
+
+      margin-bottom: 18px;
+    }
+
+    .values {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 14px;
+
+      margin-top: 28px;
+    }
+
+    .value {
+      background: white;
+
+      padding: 18px;
+
+      border-left: 3px solid var(--dourado);
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+
+      font-weight: bold;
+
+      color: var(--azul);
+    }
+
+    /* =========================
+       ÁREAS
+    ========================= */
+
+    .areas-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+    .area {
+      padding: 30px;
+
+      border: 1px solid var(--borda);
+
+      border-radius: 8px;
+
+      background: white;
+
+      transition: .25s;
+    }
+
+    .area:hover {
+      transform: translateY(-5px);
+
+      box-shadow: var(--sombra);
+
+      border-color: var(--dourado);
+    }
+
+    .area-icon {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #f8f1e3;
+
+      color: #8b6c2e;
+
+      border-radius: 50%;
+
+      font-size: 1.35rem;
+
+      margin-bottom: 20px;
+    }
+
+    .area h3 {
+      color: var(--azul);
+
+      margin-bottom: 10px;
+
+      font-size: 1.15rem;
+    }
+
+    .area p {
+      color: var(--texto-claro);
+
+      font-size: .94rem;
+    }
+
+    /* =========================
+       SERVIÇOS
+    ========================= */
+
+    .services {
+      background: var(--cinza);
+    }
+
+    .service-list {
+      max-width: 900px;
+
+      margin: auto;
+
+      display: grid;
+
+      gap: 15px;
+    }
+
+    .service {
+      background: white;
+
+      border: 1px solid var(--borda);
+
+      padding: 23px 27px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 18px;
+
+      border-radius: 7px;
+    }
+
+    .check {
+      color: #967536;
+
+      font-size: 1.3rem;
+
+      font-weight: bold;
+    }
+
+    .service strong {
+      color: var(--azul);
+    }
+
+    /* =========================
+       CONTATO
+    ========================= */
+
+    .contact {
+      background: var(--azul-escuro);
+
+      color: white;
+    }
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns: .9fr 1.1fr;
+
+      gap: 50px;
+
+      align-items: start;
+    }
+
+    .contact h2 {
+      color: white;
+    }
+
+    .contact-intro {
+      color: #c9d6e1;
+
+      margin-bottom: 30px;
+    }
+
+    .contact-info {
+      display: grid;
+
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+
+      gap: 14px;
+
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      color: var(--dourado-claro);
+
+      font-size: 1.3rem;
+
+      width: 28px;
+    }
+
+    .contact-item small {
+      display: block;
+
+      color: #9fb0bf;
+
+      margin-bottom: 2px;
+    }
+
+    .contact-item div {
+      color: white;
+    }
+
+    /* =========================
+       FORMULÁRIO
+    ========================= */
+
+    .form {
+      background: white;
+
+      padding: 34px;
+
+      border-radius: 9px;
+
+      color: var(--texto);
+
+      box-shadow: var(--sombra);
+    }
+
+    .form h3 {
+      color: var(--azul);
+
+      font: 1.6rem Georgia, serif;
+
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+
+      font-size: .85rem;
+
+      font-weight: bold;
+
+      margin-bottom: 6px;
+
+      color: var(--azul);
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+
+      border: 1px solid #d5dde5;
+
+      border-radius: 5px;
+
+      padding: 12px 13px;
+
+      font: inherit;
+
+      outline: none;
+
+      background: #fff;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--dourado);
+
+      box-shadow:
+        0 0 0 3px rgba(201,164,92,.12);
+    }
+
+    textarea {
+      min-height: 125px;
+
+      resize: vertical;
+    }
+
+    .form .btn {
+      width: 100%;
+    }
+
+    .notice {
+      font-size: .75rem;
+
+      color: #758493;
+
+      margin-top: 12px;
+
+      text-align: center;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #041321;
+
+      color: #91a4b4;
+
+      padding: 28px 0;
+
+      text-align: center;
+
+      font-size: .85rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      nav ul {
+        position: absolute;
+
+        top: 76px;
+
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        background: var(--azul-escuro);
+
+        padding: 20px 5%;
+
+        gap: 18px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+
+      section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        min-height: 90vh;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .about-card {
+        min-height: 310px;
+
+        padding: 30px;
+      }
+
+      .areas-grid,
+      .values,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form {
+        padding: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="container nav">
+
+      <a href="#inicio" class="logo">
+
+        <span class="logo-mark">⚖</span>
+
+        <span>Aliança Jurídica</span>
+
+      </a>
+
+      <nav>
+
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+
+        <ul id="menu">
+
+          <li>
+            <a href="#inicio">
+              Início
+            </a>
+          </li>
+
+          <li>
+            <a href="#sobre">
+              Sobre
+            </a>
+          </li>
+
+          <li>
+            <a href="#areas">
+              Áreas de Atuação
+            </a>
+          </li>
+
+          <li>
+            <a href="#servicos">
+              Serviços
+            </a>
+          </li>
+
+          <li>
+            <a href="#contato">
+              Contato
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         INÍCIO
+    ========================= -->
+
+    <section class="hero" id="inicio">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            Aliança Jurídica
+          </div>
+
+          <h1>
+            Segurança para suas
+            <span>decisões jurídicas.</span>
+          </h1>
+
+          <p>
+            Conheça nossos serviços e áreas de atuação.
+            Conte com atendimento profissional, claro e próximo
+            para encontrar o suporte jurídico adequado à sua necessidade.
+          </p>
+
+          <div class="buttons">
+
+            <a
+              href="#contato"
+              class="btn btn-primary"
+            >
+              Solicitar atendimento
+            </a>
+
+            <a
+              href="#areas"
+              class="btn btn-outline"
+            >
+              Conhecer áreas de atuação
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SOBRE
+    ========================= -->
+
+    <section class="about" id="sobre">
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <div class="eyebrow">
+            Sobre nós
+          </div>
+
+          <h2>
+            Uma presença jurídica profissional e próxima
+          </h2>
+
+          <p>
+            Informações claras para que você conheça o escritório
+            e encontre o atendimento que procura.
+          </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+          <div class="about-card">
+
+            <h3>
+              Aliança Jurídica
+            </h3>
+
+            <p>
+              Um espaço institucional desenvolvido para apresentar
+              o escritório, seus serviços jurídicos, áreas de atuação
+              e formas de contato de maneira clara e acessível.
+            </p>
+
+          </div>
+
+
+          <div class="about-text">
+
+            <p>
+              A Aliança Jurídica busca oferecer uma comunicação
+              profissional, transmitindo confiança, credibilidade,
+              segurança e proximidade.
+            </p>
+
+            <p>
+              Nosso objetivo é facilitar o acesso às informações
+              sobre os serviços jurídicos e tornar mais simples
+              o primeiro contato com o escritório.
+            </p>
+
+
+            <div class="values">
+
+              <div class="value">
+                Confiança
+              </div>
+
+              <div class="value">
+                Credibilidade
+              </div>
+
+              <div class="value">
+                Segurança
+              </div>
+
+              <div class="value">
+                Proximidade
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ÁREAS DE ATUAÇÃO
+    ========================= -->
+
+    <section id="areas">
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <div class="eyebrow">
+            Atuação
+          </div>
+
+          <h2>
+            Áreas de atuação
+          </h2>
+
+          <p>
+            Conheça as áreas jurídicas atendidas pelo escritório.
+            Os conteúdos abaixo podem ser ajustados conforme as
+            informações oficiais fornecidas pela Aliança Jurídica.
+          </p>
+
+        </div>
+
+
+        <div class="areas-grid">
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              ⚖
+            </div>
+
+            <h3>
+              Direito Civil
+            </h3>
+
+            <p>
+              Orientação e atendimento em questões relacionadas
+              às relações civis.
+            </p>
+
+          </article>
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              ▣
+            </div>
+
+            <h3>
+              Direito de Família
+            </h3>
+
+            <p>
+              Atendimento em questões jurídicas relacionadas
+              ao âmbito familiar.
+            </p>
+
+          </article>
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              §
+            </div>
+
+            <h3>
+              Direito do Trabalho
+            </h3>
+
+            <p>
+              Orientação jurídica em situações relacionadas
+              às relações de trabalho.
+            </p>
+
+          </article>
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              ⌂
+            </div>
+
+            <h3>
+              Direito Imobiliário
+            </h3>
+
+            <p>
+              Atendimento relacionado a questões jurídicas
+              envolvendo imóveis.
+            </p>
+
+          </article>
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              ▤
+            </div>
+
+            <h3>
+              Consultoria Jurídica
+            </h3>
+
+            <p>
+              Informações e orientação jurídica de acordo
+              com a necessidade apresentada.
+            </p>
+
+          </article>
+
+
+          <article class="area">
+
+            <div class="area-icon">
+              +
+            </div>
+
+            <h3>
+              Outras áreas
+            </h3>
+
+            <p>
+              Entre em contato para conhecer as demais áreas
+              de atuação disponíveis.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVIÇOS
+    ========================= -->
+
+    <section
+      class="services"
+      id="servicos"
+    >
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <div class="eyebrow">
+            Serviços
+          </div>
+
+          <h2>
+            Como podemos ajudar
+          </h2>
+
+          <p>
+            Um espaço para apresentar de forma objetiva os serviços
+            jurídicos oferecidos pelo escritório.
+          </p>
+
+        </div>
+
+
+        <div class="service-list">
+
+
+          <div class="service">
+
+            <span class="check">
+              ✓
+            </span>
+
+            <div>
+
+              <strong>
+                Orientação jurídica
+              </strong>
+
+              <br>
+
+              <span>
+                Informações e direcionamento de acordo com cada situação.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <span class="check">
+              ✓
+            </span>
+
+            <div>
+
+              <strong>
+                Consultoria
+              </strong>
+
+              <br>
+
+              <span>
+                Análise de questões jurídicas e apresentação de orientações.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <span class="check">
+              ✓
+            </span>
+
+            <div>
+
+              <strong>
+                Atendimento personalizado
+              </strong>
+
+              <br>
+
+              <span>
+                Contato próximo para compreender a necessidade apresentada.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <span class="check">
+              ✓
+            </span>
+
+            <div>
+
+              <strong>
+                Solicitação de atendimento
+              </strong>
+
+              <br>
+
+              <span>
+                Entre em contato para obter informações e verificar
+                as possibilidades de atendimento.
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTATO
+    ========================= -->
+
+    <section
+      class="contact"
+      id="contato"
+    >
+
+      <div class="container">
+
+        <div class="contact-grid">
+
+
+          <div>
+
+            <div class="eyebrow">
+              Fale conosco
+            </div>
+
+            <h2>
+              Solicite um atendimento
+            </h2>
+
+            <p class="contact-intro">
+              Preencha o formulário ao lado e envie sua solicitação.
+              A equipe poderá entrar em contato para obter mais
+              informações sobre sua necessidade.
+            </p>
+
+
+            <div class="contact-info">
+
+
+              <div class="contact-item">
+
+                <span class="contact-icon">
+                  ⌖
+                </span>
+
+                <div>
+
+                  <small>
+                    Endereço
+                  </small>
+
+                  Rua Chile, nº 97 — Jardim América
+                  <br>
+                  Foz do Iguaçu — PR
+
+                </div>
+
+              </div>
+
+
+              <div class="contact-item">
+
+                <span class="contact-icon">
+                  ✉
+                </span>
+
+                <div>
+
+                  <small>
+                    E-mail
+                  </small>
+
+                  contato@aliancajuridica.com.br
+
+                </div>
+
+              </div>
+
+
+              <div class="contact-item">
+
+                <span class="contact-icon">
+                  ☎
+                </span>
+
+                <div>
+
+                  <small>
+                    Telefone
+                  </small>
+
+                  (45) 0000-0000
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- FORMULÁRIO -->
+
+          <form
+            class="form"
+            id="contactForm"
+          >
+
+            <h3>
+              Entre em contato
+            </h3>
+
+
+            <div class="form-row">
+
+
+              <div class="field">
+
+                <label for="nome">
+                  Nome
+                </label>
+
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Seu nome"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="telefone">
+                  Telefone
+                </label>
+
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(00) 00000-0000"
+                  required
+                >
+
+              </div>
+
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="email">
+                E-mail
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu@email.com"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="assunto">
+                Assunto
+              </label>
+
+              <select
+                id="assunto"
+                name="assunto"
+              >
+
+                <option value="">
+                  Selecione uma opção
+                </option>
+
+                <option>
+                  Orientação jurídica
+                </option>
+
+                <option>
+                  Consultoria
+                </option>
+
+                <option>
+                  Informações sobre serviços
+                </option>
+
+                <option>
+                  Outro assunto
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="mensagem">
+                Mensagem
+              </label>
+
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                placeholder="Conte brevemente como podemos ajudar..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Enviar solicitação
+            </button>
+
+
+            <p class="notice">
+              Este formulário é apenas para solicitação de contato.
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <strong>
+        Aliança Jurídica
+      </strong>
+
+      — Site institucional.
+
+      <br>
+
+      ©
+      <span id="ano"></span>
+      Todos os direitos reservados.
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    // =========================
+    // MENU MOBILE
+    // =========================
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const menu =
+      document.getElementById("menu");
+
+
+    menuBtn.addEventListener("click", () => {
+
+      menu.classList.toggle("active");
+
+    });
+
+
+    document
+      .querySelectorAll("#menu a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          menu.classList.remove("active");
+
+        });
+
+      });
+
+
+    // =========================
+    // ANO AUTOMÁTICO
+    // =========================
+
+    document.getElementById("ano").textContent =
+      new Date().getFullYear();
+
+
+    // =========================
+    // FORMULÁRIO
+    // =========================
+
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const nome =
+          document
+            .getElementById("nome")
+            .value
+            .trim();
+
+
+        alert(
+          "Obrigado, " +
+          nome +
+          "! Sua solicitação foi preenchida."
+        );
+
+
+        this.reset();
+
+      });
+
+  </script>
+
+</body>
+</html>
+```

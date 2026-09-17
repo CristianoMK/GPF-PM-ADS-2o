@@ -1,0 +1,41 @@
+/* =========================
+   ANIMAÇÃO DOS POKÉMON
+========================= */
+
+@keyframes entrarDeBaixo {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entrarDeCima {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Quando vem o próximo Pokémon */
+
+.animacao-baixo {
+    animation: entrarDeBaixo 0.25s ease-out;
+}
+
+
+/* Quando volta para o Pokémon anterior */
+
+.animacao-cima {
+    animation: entrarDeCima 0.25s ease-out;
+}
