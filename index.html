@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Pokedex - GPF</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <title>Pokédex Beast Ball</title>
 </head>
-
-<body>
-
+<body class="pagina-inicial">
+    <!-- O menu continua sendo carregado pelo script.js. -->
     <aside id="menu"></aside>
 
-
-    <main>
-        <section class="barra_pesquisa">
-            <input type="text" placeholder="Pesquisar Pokemons, Ginásios, Itens...">
-
-            <button type="submit">
-                <img src="./assets/sprites/lupa_icone.png" class="icone" alt="Lupa">
+    <div class="conteudo-principal">
+        <header class="topo">
+            <button class="botao-pesquisa" type="button" aria-label="Pesquisar">
+                <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar" class="icone-pesquisa">
             </button>
+            <h1>MENU PRINCIPAL</h1>
+            <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-topo">
+        </header>
 
-        </section>
-        <h1>Bem-vindo à Pokedex!</h1>
-        <p>Explore o mundo dos Pokémon e descubra informações sobre suas criaturas favoritas.</p>
-        <h2>Você pesquisou:</h2>
-        <p class="pesquisa_resultado" id="pesquisou_um"></p>
-    </main>
+        <main class="conteudo">
+            <h2>Acesso rápido</h2>
+            <p class="subtitulo">Navegue pelas áreas principais da Pokédex Beast Ball.</p>
+            <div class="cards">
+                <a class="card" href="pokedex.html">
+                    <div class="card-texto"><h3>POKÉDEX</h3><span class="categoria pokemon">POKÉMONS</span><hr><p>Explore criaturas com pouco destaque no anime e nos jogos.</p><span class="seta">&gt;</span></div>
+                    <div class="imagem-card-pokedex">
+                        <img src="./assets/sprites/card_pokedex.png" alt="Card Pokédex" class="card-base">
+                        <img src="./assets/sprites/pokemon.png" alt="Pokémon" class="pokemon-card">
+                    </div>
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto"><h3>ITENS</h3><span class="categoria catalogo">CATÁLOGO</span><hr><p>Veja itens, raridades e efeitos com visual limpo e direto.</p><span class="seta">&gt;</span></div>
+                    <img src="./assets/sprites/image.png" alt="Card Itens" class="imagem-card">
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto"><h3>MAPA</h3><span class="categoria regiao">REGIÕES</span><hr><p>Navegue por regiões, rotas e áreas especiais da Pokédex.</p><span class="seta">&gt;</span></div>
+                    <img src="./assets/sprites/card_mapa.png" alt="Card Mapa" class="imagem-card">
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto"><h3>CONFIG</h3><span class="categoria sistema">SISTEMA</span><hr><p>Preferências, tema e progresso do usuário no projeto.</p><span class="seta">&gt;</span></div>
+                    <img src="./assets/sprites/card_config.png" alt="Card Configurações" class="imagem-card">
+                </a>
+            </div>
+        </main>
+    </div>
 
-    <footer></footer>
+    <div id="popup-desenvolvimento" class="popup-fundo">
+        <div class="popup-caixa">
+            <h2>Em desenvolvimento</h2>
+            <p>Esta página ainda está sendo desenvolvida.</p>
+            <button id="fechar-popup" type="button">Fechar</button>
+        </div>
+    </div>
+
+    <script src="js/popup.js"></script>
     <script src="script.js"></script>
 </body>
+</html>

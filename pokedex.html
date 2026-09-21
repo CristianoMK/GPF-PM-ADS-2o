@@ -1,21 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Pokedex - GPF</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/pokedex.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <title>Pokédex - GPF</title>
 </head>
-
-<body>
-
+<body class="pagina-pokedex">
     <aside id="menu"></aside>
 
+    <div class="conteudo-principal-pokedex">
+        <header class="topo-pokedex">
+            <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar" class="icone-pesquisa-pokedex">
+            <h1>POKÉDEX</h1>
+            <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-topo-pokedex">
+        </header>
 
-    <main>
-    </main>
+        <main class="area-principal-pokedex">
+            <div class="barra-pesquisa">
+                <div class="campo-pesquisa">
+                    <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar">
+                    <input type="text" placeholder="PESQUISAR POKÉMON">
+                </div>
 
-    <footer></footer>
+                <select id="filtro-tipo" class="filtro-tipo" aria-label="Filtrar por tipo">
+                    <option value="todos">Todos os tipos</option>
+                    <option value="favoritos">Favoritos</option>
+                </select>
+            </div>
+
+            <div class="conteudo-pokedex">
+                <section class="painel-pokemon">
+                    <div class="card-pokemon">
+                        <div class="cabecalho-card-pokemon">
+                            <span id="numero-pokemon" class="numero-pokemon">Nº448</span>
+                            <h2 id="nome-pokemon">LUCARIO</h2>
+                        </div>
+
+                        <div class="area-imagem-pokemon">
+                            <img id="imagem-pokemon" src="" alt="Imagem do Pokémon" width="250" height="250">
+                        </div>
+
+                        <div class="informacoes-pokemon">
+                            <div class="dados-pokemon">
+                                <div id="tipos-pokemon" class="tipos-pokemon">
+                                    <strong>TIPO</strong>
+                                </div>
+                                <p>ALTURA: <span id="altura-pokemon">1,2 m</span></p>
+                                <p>PESO: <span id="peso-pokemon">54 kg</span></p>
+                                <p>REGIÃO: SINNOH</p>
+                            </div>
+
+                            <div class="status-pokemon">
+                                <span class="titulo-status">STATUS</span>
+                                <div class="linha-status"><span>PS</span><div class="barra-status"><div id="barra-ps" class="preenchimento ps"></div></div><strong id="status-ps">70</strong></div>
+                                <div class="linha-status"><span>ATK</span><div class="barra-status"><div id="barra-atk" class="preenchimento atk"></div></div><strong id="status-atk">110</strong></div>
+                                <div class="linha-status"><span>DEF</span><div class="barra-status"><div id="barra-def" class="preenchimento def"></div></div><strong id="status-def">70</strong></div>
+                                <div class="linha-status"><span>VEL</span><div class="barra-status"><div id="barra-vel" class="preenchimento vel"></div></div><strong id="status-vel">90</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="botao-favorito" class="botao-favorito" type="button">Adicionar aos favoritos</button>
+                </section>
+
+                <section class="painel-lista">
+                    <div id="lista-pokemon" class="lista-pokemon"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="popup-desenvolvimento" class="popup-fundo">
+        <div class="popup-caixa">
+            <h2>Em desenvolvimento</h2>
+            <p>Esta página ainda está sendo desenvolvida.</p>
+            <button id="fechar-popup" type="button">Fechar</button>
+        </div>
+    </div>
+
+    <script src="js/popup.js"></script>
     <script src="script.js"></script>
+    <script src="js/pokedex.js"></script>
 </body>
+</html>

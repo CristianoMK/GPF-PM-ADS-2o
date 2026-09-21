@@ -1,38 +1,38 @@
-const input = document.querySelector('.barra_pesquisa input'); //define input como a  barra de pesquisa
-const botao = document.querySelector('.barra_pesquisa button'); //define botao como o botao ao lado da barra de pesquisa
-const arquivoAtual = descobrirArquivoAtual(window.location.pathname); // descobre a localizacao do arquivo
+const arquivoAtual = descobrirArquivoAtual(window.location.pathname);
 
+function descobrirArquivoAtual(caminho) {
+    const partesDoCaminho = caminho.split("/");
+    const ultimaPosicao = partesDoCaminho.length - 1;
 
-function descobrirArquivoAtual(caminho) { //descobre qual arquivo esta sendo executado
-
-    caminho = caminho.split("/");
-    const ultimaPosicao = caminho.length - 1;
-
-    return caminho[ultimaPosicao];
-}
-
-if (input && botao) {
-    botao.addEventListener('click', function () {
-        console.log(input.value);
-        document.getElementById('pesquisou_um').innerText = input.value
-    });
+    return partesDoCaminho[ultimaPosicao];
 }
 
 fetch('menu.html')
     .then(function (resposta) {
+        if (!resposta.ok) {
+            throw new Error('Não foi possível carregar o menu.');
+        }
+
         return resposta.text();
     })
     .then(function (conteudo) {
-        document.getElementById('menu').innerHTML = conteudo; //coloca o menu dentro da tag de forma interpretada
+        const areaDoMenu = document.getElementById('menu');
+        areaDoMenu.innerHTML = conteudo;
 
-        const opcoesMenu = document.querySelectorAll('.menu_item'); //pega todas as opcoes em um array
+        const opcoesMenu = document.querySelectorAll('.menu_item');
 
         opcoesMenu.forEach(function (opcao) {
-
             const opcComp = descobrirArquivoAtual(opcao.pathname);
 
             if (opcComp === arquivoAtual) {
                 opcao.classList.add('ativo');
             }
-        })
+        });
+
+        if (typeof ativarPopupDesenvolvimento === 'function') {
+            ativarPopupDesenvolvimento();
+        }
     })
+    .catch(function () {
+
+    });
