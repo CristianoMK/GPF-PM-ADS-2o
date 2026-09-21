@@ -1,0 +1,201 @@
+/* Geral */
+.pagina-inicial {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    font-family: Arial, sans-serif;
+    color: #17202F;
+    background-color: #FFFFFF;
+}
+
+/* Cabeçalho */
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+}
+
+.topo {
+    height: 76px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    align-items: center;
+    padding: 0 28px;
+    color: #FFFFFF;
+    background-color: #17233A;
+    border-bottom: 5px solid #00C2D7;
+}
+
+.topo h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 31px;
+}
+
+.botao-pesquisa {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icone-pesquisa {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+    justify-self: end;
+    object-fit: contain;
+}
+
+/* Conteúdo */
+.conteudo {
+    width: 100%;
+    max-width: 1400px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 60px 40px 77px;
+}
+
+.conteudo h2 {
+    margin: 0 0 7px;
+    font-size: 37px;
+}
+
+.subtitulo {
+    margin: 0 0 18px;
+    color: #1F7AA8;
+    font-size: 15px;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.card {
+    min-height: 248px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 29px;
+    color: #17202F;
+    text-decoration: none;
+    background-color: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px #17233A33;
+}
+
+.card-texto {
+    max-width: 330px;
+}
+
+.card h3 {
+    margin: 0 0 7px;
+    font-size: 37px;
+}
+
+.categoria {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pokemon {
+    color: #00C2D7;
+}
+
+.catalogo {
+    color: #69C9BE;
+}
+
+.regiao {
+    color: #1F7AA8;
+}
+
+.sistema {
+    color: #D3A700;
+}
+
+.card hr {
+    width: 210px;
+    margin: 13px 0 15px;
+    border: 0;
+    border-top: 2px solid #17202F;
+}
+
+.card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.seta {
+    display: block;
+    margin-top: 18px;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 18px;
+}
+
+.imagem-card {
+    width: 176px;
+    min-width: 176px;
+    height: 209px;
+    margin-left: 20px;
+    align-self: center;
+    object-fit: contain;
+}
+
+.imagem-card-pokedex {
+    position: relative;
+    width: 176px;
+    height: 209px;
+    margin-left: 20px;
+    align-self: center;
+}
+
+.card-base {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pokemon-card {
+    position: absolute;
+    z-index: 2;
+    top: 23px;
+    left: 18px;
+    width: 143px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Responsividade */
+@media (max-width: 760px) {
+    .topo h1 {
+        font-size: 23px;
+    }
+
+    .conteudo {
+        padding: 28px 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,53 @@
+/* Popup de páginas em desenvolvimento */
+.popup-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.popup-fundo.mostrar-popup {
+    display: flex;
+}
+
+.popup-caixa {
+    width: 340px;
+    padding: 28px;
+    text-align: center;
+    background: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+.popup-caixa h2 {
+    margin: 0 0 10px;
+    color: #17202F;
+    font-size: 26px;
+}
+
+.popup-caixa p {
+    margin: 0;
+    color: #17202F;
+    font-size: 14px;
+}
+
+.popup-caixa button {
+    margin-top: 20px;
+    padding: 10px 28px;
+    color: #17202F;
+    font-weight: bold;
+    cursor: pointer;
+    background: #00C2D7;
+    border: 0;
+    border-radius: 8px;
+}
+
+.popup-caixa button:hover {
+    background: #14D5E8;
+}
