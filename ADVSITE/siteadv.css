@@ -581,7 +581,6 @@ color: #c9a45c;
 
 @media (max-width: 1000px) {
 
-```
 .hero-grid {
     grid-template-columns: 1fr;
     gap: 50px;
@@ -622,13 +621,11 @@ color: #c9a45c;
 .form {
     max-width: 700px;
 }
-```
 
 }
 
 @media (max-width: 760px) {
 
-```
 section {
     padding: 75px 0;
 }
@@ -705,13 +702,11 @@ nav ul li a {
     flex: 1;
     min-width: 130px;
 }
-```
 
 }
 
 @media (max-width: 480px) {
 
-```
 .container {
     width: 92%;
 }
@@ -765,6 +760,5 @@ nav ul li a {
 .contact-grid {
     gap: 40px;
 }
-```
 
 }
