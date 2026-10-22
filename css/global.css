@@ -1,8 +1,54 @@
-/* Sidebar compartilhada */
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+}
+
+.topo {
+    height: 76px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 40px 40px minmax(0, 1fr) 45px;
+    align-items: center;
+    padding: 0 28px;
+    color: #FFFFFF;
+    background-color: #17233A;
+    border-bottom: 5px solid #00C2D7;
+}
+
+.topo h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 31px;
+}
+
+.botao-pesquisa {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icone-pesquisa {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+    justify-self: end;
+    object-fit: contain;
+}
+
 #menu {
     width: 182px;
     flex-shrink: 0;
 }
+/* Sidebar compartilhada */
+
 
 .menu_lateral {
     position: fixed;
@@ -120,10 +166,47 @@
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 760px) {
-    #menu,
+#header {
+    width: 100%;
+}
+/* Botão de menu: escondido por padrão */
+.botao-menu {
+    display: none;
+    padding: 0;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+/* Telas menores que 768px */
+@media (max-width: 767.98px) {
+    #menu {
+        width: 0;
+        flex: 0 0 0;
+    }
+
     .menu_lateral {
-        width: 145px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1050;
+        width: 182px;
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    #menu.menu-aberto .menu_lateral {
+        transform: translateX(0);
+    }
+
+    .botao-menu {
+        display: block;
     }
 
     .cabecalho-menu h2 {
@@ -132,5 +215,19 @@
 
     .menu_item {
         font-size: 12px;
+    }
+
+    .fundo-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 1040;
+        background: rgb(0 0 0 / 45%);
+    }
+}
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .menu_lateral {
+        transition: none;
     }
 }
