@@ -1,0 +1,170 @@
+/* Catálogo de itens */
+
+.catalogo-itens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+}
+
+/* Card */
+
+.card-item {
+    position: relative;
+
+    min-height: 230px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    padding: 24px;
+
+    color: #17202F;
+    text-decoration: none;
+
+    background-color: #EAF2F7;
+
+    border: 2px solid #17233A;
+    border-radius: 15px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Cabeçalho */
+
+.card-item-cabecalho {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+}
+
+/* Categoria */
+
+.card-item-categoria {
+    padding: 5px 9px;
+
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+
+    background-color: #17233A;
+
+    border-radius: 6px;
+}
+
+/* Imagem */
+
+.card-item-imagem {
+    width: 130px;
+    height: 130px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 22px;
+}
+
+.card-item-imagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* Conteúdo */
+
+.card-item-conteudo {
+    min-width: 0;
+}
+
+.card-item-conteudo h3 {
+    margin: 0 0 5px;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.card-item-tipo {
+    color: #1F7AA8;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.card-item-conteudo hr {
+    width: 100%;
+    margin: 12px 0;
+
+    border: 0;
+    border-top: 2px solid #17233A;
+}
+
+.card-item-conteudo p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Seta */
+
+.card-item-seta {
+    position: absolute;
+
+    right: 18px;
+    bottom: 15px;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Interação */
+
+.card-item:hover {
+    color: #17202F;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 5px 10px #17233A33;
+}
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+
+    .catalogo-itens {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .card-item {
+        min-height: 190px;
+        padding: 18px;
+    }
+
+    .card-item-imagem {
+        width: 90px;
+        height: 90px;
+
+        margin-right: 15px;
+    }
+
+    .card-item-conteudo h3 {
+        font-size: 21px;
+    }
+
+    .card-item-conteudo p {
+        font-size: 12px;
+        line-height: 17px;
+    }
+
+}
