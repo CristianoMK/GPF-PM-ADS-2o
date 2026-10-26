@@ -3,8 +3,8 @@
 ./assets/sprites/card_pokedex.png
 ./assets/sprites/image.png
 ./assets/sprites/logo.png
-./assets/sprites/lupa_icone.png
 ./assets/sprites/pokemon.png
+./assets/sprites/lupa_icone.png
 ./backend/.gitignore
 ./backend/data/favoritos.json
 ./backend/package-lock.json
@@ -19,9 +19,11 @@
 ./index.html
 ./js/pokedex.js
 ./js/popup.js
+./js/pesquisa.js
 ./menu.html
 ./pokedex.html
 ./script.js
+./header.html
 ./projeto.txt
 
 
@@ -1068,11 +1070,184 @@ app.listen(porta, function () {
 
 
 ========== ./css/global.css ==========
-/* Sidebar compartilhada */
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Cabeçalho compartilhado */
+
+.topo {
+    height: 76px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 0 28px;
+
+    color: #FFFFFF;
+    background-color: #17233A;
+
+    border-bottom: 5px solid #00C2D7;
+}
+
+/* Botão do menu */
+
+.botao-menu {
+    display: none;
+
+    padding: 0;
+
+    color: #FFFFFF;
+    background: transparent;
+
+    border: 0;
+    cursor: pointer;
+}
+
+/* Barra de pesquisa */
+
+.barra-pesquisa-header {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+
+    display: flex;
+    align-items: stretch;
+
+    overflow: hidden;
+
+    background-color: #FFFFFF;
+
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+/* Categoria */
+
+.categoria-pesquisa {
+    width: 115px;
+    min-width: 0;
+
+    padding: 0 8px;
+
+    color: #17202F;
+    font-size: 13px;
+    font-weight: bold;
+
+    background-color: #EAF2F7;
+
+    border: 0;
+    border-right: 1px solid #17233A;
+
+    outline: none;
+}
+
+/* Campo de texto */
+
+.campo-pesquisa-header {
+    flex: 1;
+    min-width: 0;
+
+    padding: 0 12px;
+
+    color: #17202F;
+    font-size: 14px;
+
+    background-color: #FFFFFF;
+
+    border: 0;
+    outline: none;
+}
+
+/* Placeholder */
+
+.campo-pesquisa-header::placeholder {
+    color: #8AA5BC;
+}
+
+/* Botão de pesquisa */
+
+.botao-pesquisa-header {
+    width: 44px;
+    min-width: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background-color: #00C2D7;
+
+    border: 0;
+    border-left: 1px solid #17233A;
+
+    cursor: pointer;
+}
+
+/* Imagem da lupa */
+
+.botao-pesquisa-header img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+}
+
+/* Logo */
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+
+    justify-self: end;
+
+    object-fit: contain;
+}
+
+/* Menu lateral */
+
 #menu {
     width: 182px;
     flex-shrink: 0;
 }
+.topo h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 31px;
+}
+
+.botao-pesquisa {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icone-pesquisa {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+    justify-self: end;
+    object-fit: contain;
+}
+
+#menu {
+    width: 182px;
+    flex-shrink: 0;
+}
+/* Sidebar compartilhada */
+
 
 .menu_lateral {
     position: fixed;
@@ -1190,21 +1365,121 @@ app.listen(porta, function () {
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 760px) {
-    #menu,
+#header {
+    width: 100%;
+}
+/* Botão de menu: escondido por padrão */
+.botao-menu {
+    display: none;
+    padding: 0;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+/* Telas menores que 768px */
+@media (max-width: 767.98px) {
+
+    /* Menu lateral */
+
+    #menu {
+        width: 0;
+        flex: 0 0 0;
+    }
+
     .menu_lateral {
-        width: 145px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1050;
+
+        width: 182px;
+        height: 100vh;
+        height: 100dvh;
+
+        overflow-y: auto;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
     }
 
-    .cabecalho-menu h2 {
-        font-size: 17px;
+    #menu.menu-aberto .menu_lateral {
+        transform: translateX(0);
     }
 
-    .menu_item {
+    /* Cabeçalho */
+
+     .topo {
+        grid-template-columns: 32px minmax(0, 1fr) 38px;
+        gap: 8px;
+        padding: 0 12px;
+    }
+
+    /* Botão do menu */
+
+    .botao-menu {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Barra de pesquisa */
+
+    .barra-pesquisa-header {
+        height: 38px;
+    }
+
+    .categoria-pesquisa {
+        width: 85px;
+
+        padding: 0 4px;
+
+        font-size: 11px;
+    }
+
+    .campo-pesquisa-header {
+        padding: 0 6px;
+
         font-size: 12px;
+    }
+
+    .botao-pesquisa-header {
+        width: 34px;
+        min-width: 34px;
+    }
+
+    .botao-pesquisa-header img {
+        width: 19px;
+        height: 19px;
+    }
+
+    /* Logo */
+
+    .logo-topo {
+        flex-shrink: 0;
+    }
+
+    /* Fundo do menu */
+
+    .fundo-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 1040;
+
+        background: rgb(0 0 0 / 45%);
     }
 }
 
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .menu_lateral {
+        transition: none;
+    }
+}
 
 ========== ./css/index.css ==========
 /* Geral */
@@ -1215,52 +1490,6 @@ app.listen(porta, function () {
     font-family: Arial, sans-serif;
     color: #17202F;
     background-color: #FFFFFF;
-}
-
-/* Cabeçalho */
-.conteudo-principal {
-    flex: 1;
-    min-width: 0;
-}
-
-.topo {
-    height: 76px;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 60px 1fr 60px;
-    align-items: center;
-    padding: 0 28px;
-    color: #FFFFFF;
-    background-color: #17233A;
-    border-bottom: 5px solid #00C2D7;
-}
-
-.topo h1 {
-    margin: 0;
-    text-align: center;
-    font-size: 31px;
-}
-
-.botao-pesquisa {
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-}
-
-.icone-pesquisa {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-.logo-topo {
-    width: 45px;
-    height: 45px;
-    justify-self: end;
-    object-fit: contain;
 }
 
 /* Conteúdo */
@@ -1359,7 +1588,7 @@ app.listen(porta, function () {
     line-height: 18px;
 }
 
-.imagem-card {
+/*.imagem-card {
     width: 176px;
     min-width: 176px;
     height: 209px;
@@ -1375,7 +1604,7 @@ app.listen(porta, function () {
     margin-left: 20px;
     align-self: center;
 }
-
+*/
 .card-base {
     position: relative;
     z-index: 1;
@@ -1394,10 +1623,30 @@ app.listen(porta, function () {
     object-fit: contain;
 }
 
-/* Responsividade */
-@media (max-width: 760px) {
+/* TELA PEQUENA ou CELULAR */
+@media (max-width: 767.98px) {
+    .topo {
+        grid-template-columns: 40px 40px minmax(0, 1fr) 40px;
+        gap: 6px;
+        padding: 0 12px;
+    }
+
     .topo h1 {
-        font-size: 23px;
+        font-size: clamp(16px, 4vw, 23px);
+        overflow-wrap: anywhere;
+    }
+
+    .botao-menu {
+        justify-self: start;
+    }
+
+    .botao-pesquisa {
+        justify-self: center;
+    }
+
+    .logo-topo {
+        width: 38px;
+        height: 38px;
     }
 
     .conteudo {
@@ -1426,7 +1675,7 @@ app.listen(porta, function () {
     min-width: 0;
 }
 
-/* Cabeçalho */
+/* Cabeçalho 
 .topo-pokedex {
     height: 90px;
     box-sizing: border-box;
@@ -1773,6 +2022,45 @@ app.listen(porta, function () {
     background: #14D5E8;
 }
 
+/* pesquisa */
+
+
+
+#modal-pesquisa .modal-content {
+    color: #17202F;
+    background: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+#modal-pesquisa .modal-header {
+    border-bottom: 2px solid #17233A;
+}
+
+#modal-pesquisa .modal-title {
+    font-weight: bold;
+}
+
+#modal-pesquisa .form-label {
+    font-weight: bold;
+}
+
+#modal-pesquisa .form-control {
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+#modal-pesquisa .btn-primary {
+    color: #17202F;
+    font-weight: bold;
+    background: #00C2D7;
+    border-color: #00C2D7;
+}
+
+#modal-pesquisa .btn-primary:hover {
+    background: #14D5E8;
+    border-color: #14D5E8;
+}
 
 ========== ./index.html ==========
 <!DOCTYPE html>
@@ -1780,46 +2068,63 @@ app.listen(porta, function () {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 5.3 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/popup.css">
     <title>Pokédex Beast Ball</title>
 </head>
+
 <body class="pagina-inicial">
-    <!-- O menu continua sendo carregado pelo script.js. -->
+
+    <!-- menu carregado pelo script.js -->
     <aside id="menu"></aside>
 
     <div class="conteudo-principal">
-        <header class="topo">
-            <button class="botao-pesquisa" type="button" aria-label="Pesquisar">
-                <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar" class="icone-pesquisa">
-            </button>
-            <h1>MENU PRINCIPAL</h1>
-            <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-topo">
-        </header>
+        <div id="header"></div>
 
         <main class="conteudo">
             <h2>Acesso rápido</h2>
             <p class="subtitulo">Navegue pelas áreas principais da Pokédex Beast Ball.</p>
             <div class="cards">
                 <a class="card" href="pokedex.html">
-                    <div class="card-texto"><h3>POKÉDEX</h3><span class="categoria pokemon">POKÉMONS</span><hr><p>Explore criaturas com pouco destaque no anime e nos jogos.</p><span class="seta">&gt;</span></div>
-                    <div class="imagem-card-pokedex">
-                        <img src="./assets/sprites/card_pokedex.png" alt="Card Pokédex" class="card-base">
-                        <img src="./assets/sprites/pokemon.png" alt="Pokémon" class="pokemon-card">
+                    <div class="card-texto">
+                        <h3>POKÉDEX</h3>
+                        <span class="categoria pokemon">POKÉMONS</span>
+                        <hr>
+                        <p>Explore criaturas com pouco destaque no anime e nos jogos.</p>
+                        <span class="seta">&gt;</span></div>
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto">
+                        <h3>ITENS</h3>
+                        <span class="categoria catalogo">CATÁLOGO</span>
+                        <hr>
+                        <p>Veja itens, raridades e efeitos com visual limpo e direto.</p>
+                        <span class="seta">&gt;</span>
                     </div>
                 </a>
                 <a class="card em-desenvolvimento" href="#">
-                    <div class="card-texto"><h3>ITENS</h3><span class="categoria catalogo">CATÁLOGO</span><hr><p>Veja itens, raridades e efeitos com visual limpo e direto.</p><span class="seta">&gt;</span></div>
-                    <img src="./assets/sprites/image.png" alt="Card Itens" class="imagem-card">
+                    <div class="card-texto">
+                        <h3>MAPA</h3>
+                        <span class="categoria regiao">REGIÕES</span>
+                        <hr>
+                        <p>Navegue por regiões, rotas e áreas especiais da Pokédex.</p>
+                        <span class="seta">&gt;</span>
+                    </div>
                 </a>
                 <a class="card em-desenvolvimento" href="#">
-                    <div class="card-texto"><h3>MAPA</h3><span class="categoria regiao">REGIÕES</span><hr><p>Navegue por regiões, rotas e áreas especiais da Pokédex.</p><span class="seta">&gt;</span></div>
-                    <img src="./assets/sprites/card_mapa.png" alt="Card Mapa" class="imagem-card">
-                </a>
-                <a class="card em-desenvolvimento" href="#">
-                    <div class="card-texto"><h3>CONFIG</h3><span class="categoria sistema">SISTEMA</span><hr><p>Preferências, tema e progresso do usuário no projeto.</p><span class="seta">&gt;</span></div>
-                    <img src="./assets/sprites/card_config.png" alt="Card Configurações" class="imagem-card">
+                    <div class="card-texto">
+                        <h3>CONFIG</h3>
+                        <span class="categoria sistema">SISTEMA</span>
+                        <hr>
+                        <p>Preferências, tema e progresso do usuário no projeto.</p>
+                        <span class="seta">&gt;</span>
+                    </div>
                 </a>
             </div>
         </main>
@@ -1833,8 +2138,14 @@ app.listen(porta, function () {
         </div>
     </div>
 
+    <!-- Bootstrap 5.3 JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
     <script src="js/popup.js"></script>
     <script src="script.js"></script>
+    <script src="js/pokedex.js"></script>
 </body>
 </html>
 
@@ -2140,6 +2451,13 @@ function ativarPopupDesenvolvimento() {
 ativarPopupDesenvolvimento();
 
 
+========== ./js/pesquisa.js ==========
+fetch("./header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.querySelector("#header").innerHTML = data;
+    });
+
 ========== ./menu.html ==========
 <aside class="menu_lateral">
     <div class="cabecalho-menu">
@@ -2153,7 +2471,7 @@ ativarPopupDesenvolvimento();
         <ul class="menu_lista">
             <li><a href="index.html" class="menu_item">MENU INICIAL</a></li>
             <li><a href="pokedex.html" class="menu_item">POKÉDEX</a></li>
-            <li><a href="#" class="menu_item em-desenvolvimento">ITENS</a></li>
+            <li><a href="itens.html" class="menu_item em-desenvolvimento">ITENS</a></li>
             <li><a href="#" class="menu_item em-desenvolvimento">MAPA</a></li>
             <li><a href="#" class="menu_item em-desenvolvimento">CONFIGURAÇÕES</a></li>
         </ul>
@@ -2174,20 +2492,22 @@ ativarPopupDesenvolvimento();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/pokedex.css">
     <link rel="stylesheet" href="css/popup.css">
     <title>Pokédex - GPF</title>
 </head>
 <body class="pagina-pokedex">
+
+    <!-- menu carregado pelo script.js -->
     <aside id="menu"></aside>
 
-    <div class="conteudo-principal-pokedex">
-        <header class="topo-pokedex">
-            <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar" class="icone-pesquisa-pokedex">
-            <h1>POKÉDEX</h1>
-            <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-topo-pokedex">
-        </header>
+    <div class="conteudo-principal">
+        <div id="header"></div>
 
         <main class="area-principal-pokedex">
             <div class="barra-pesquisa">
@@ -2252,6 +2572,10 @@ ativarPopupDesenvolvimento();
         </div>
     </div>
 
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
     <script src="js/popup.js"></script>
     <script src="script.js"></script>
     <script src="js/pokedex.js"></script>
@@ -2260,44 +2584,205 @@ ativarPopupDesenvolvimento();
 
 
 ========== ./script.js ==========
-const arquivoAtual = descobrirArquivoAtual(window.location.pathname);
-
+// Identifica o arquivo atual
 function descobrirArquivoAtual(caminho) {
     const partesDoCaminho = caminho.split("/");
     const ultimaPosicao = partesDoCaminho.length - 1;
 
-    return partesDoCaminho[ultimaPosicao];
+    return partesDoCaminho[ultimaPosicao] || "index.html";
+
 }
 
-fetch('menu.html')
-    .then(function (resposta) {
-        if (!resposta.ok) {
-            throw new Error('Não foi possível carregar o menu.');
+const arquivoAtual = descobrirArquivoAtual(window.location.pathname);
+
+/* Carrega o cabeçalho compartilhado */
+fetch("./header.html")
+.then(function (resposta) {
+if (!resposta.ok) {
+throw new Error("Não foi possível carregar o cabeçalho.");
+}
+
+    return resposta.text();
+})
+.then(function (html) {
+    const areaHeader = document.getElementById("header");
+
+    if (!areaHeader) {
+        return;
+    }
+
+    areaHeader.innerHTML = html;
+})
+.catch(function (erro) {
+    console.error("Erro ao carregar o cabeçalho:", erro);
+});
+
+/* Carrega o menu lateral */
+fetch("./menu.html")
+.then(function (resposta) {
+if (!resposta.ok) {
+throw new Error("Não foi possível carregar o menu.");
+}
+
+    return resposta.text();
+})
+.then(function (conteudo) {
+    const areaDoMenu = document.getElementById("menu");
+
+    if (!areaDoMenu) {
+        return;
+    }
+
+    areaDoMenu.innerHTML = conteudo;
+
+    /* Identifica a página atual no menu */
+    const opcoesMenu = document.querySelectorAll(".menu_item");
+
+    opcoesMenu.forEach(function (opcao) {
+        const arquivoOpcao = descobrirArquivoAtual(
+            new URL(opcao.href).pathname
+        );
+
+        if (arquivoOpcao === arquivoAtual) {
+            opcao.classList.add("ativo");
+        }
+    });
+
+    /* Configura o menu responsivo */
+    const botaoMenu = document.getElementById("botao-menu");
+
+    if (botaoMenu) {
+        const fundoMenu = document.createElement("div");
+
+        fundoMenu.classList.add("fundo-menu");
+        fundoMenu.hidden = true;
+
+        document.body.appendChild(fundoMenu);
+
+        function fecharMenu() {
+            areaDoMenu.classList.remove("menu-aberto");
+            fundoMenu.hidden = true;
+
+            botaoMenu.setAttribute("aria-expanded", "false");
+            botaoMenu.setAttribute(
+                "aria-label",
+                "Abrir menu de navegação"
+            );
         }
 
-        return resposta.text();
-    })
-    .then(function (conteudo) {
-        const areaDoMenu = document.getElementById('menu');
-        areaDoMenu.innerHTML = conteudo;
+        function alternarMenu() {
+            const menuAberto = areaDoMenu.classList.toggle(
+                "menu-aberto"
+            );
 
-        const opcoesMenu = document.querySelectorAll('.menu_item');
+            fundoMenu.hidden = !menuAberto;
 
-        opcoesMenu.forEach(function (opcao) {
-            const opcComp = descobrirArquivoAtual(opcao.pathname);
+            botaoMenu.setAttribute(
+                "aria-expanded",
+                String(menuAberto)
+            );
 
-            if (opcComp === arquivoAtual) {
-                opcao.classList.add('ativo');
+            botaoMenu.setAttribute(
+                "aria-label",
+                menuAberto
+                    ? "Fechar menu de navegação"
+                    : "Abrir menu de navegação"
+            );
+        }
+
+        botaoMenu.addEventListener("click", alternarMenu);
+        fundoMenu.addEventListener("click", fecharMenu);
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.key === "Escape") {
+                fecharMenu();
             }
         });
 
-        if (typeof ativarPopupDesenvolvimento === 'function') {
-            ativarPopupDesenvolvimento();
-        }
-    })
-    .catch(function () {
+        window.addEventListener("resize", function () {
+            if (window.innerWidth >= 768) {
+                fecharMenu();
+            }
+        });
+    }
 
-    });
+    /* Ativa os pop-ups de páginas em desenvolvimento */
+    if (typeof ativarPopupDesenvolvimento === "function") {
+        ativarPopupDesenvolvimento();
+    }
+})
+.catch(function (erro) {
+    console.error("Erro ao carregar o menu:", erro);
+});
+
+========== ./header.html ==========
+<header class="topo">
+
+    <!-- Botão do menu lateral -->
+    <button
+        class="botao-menu d-md-none"
+        id="botao-menu"
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-controls="menu"
+        aria-expanded="false"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+        >
+            <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3V2H2zm4 0v12h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6z"/>
+            <path d="M7 4h6v1H7V4zm0 2h6v1H7V6zm0 2h4v1H7V8z"/>
+        </svg>
+    </button>
+
+    <!-- Barra de pesquisa -->
+     <div>
+        <form class="barra-pesquisa-header">
+
+            <select
+                class="categoria-pesquisa"
+                aria-label="Categoria da pesquisa"
+            >
+                <option value="pokemon">Pokémon</option>
+                <option value="itens">Itens</option>
+            </select>
+
+            <input
+                type="search"
+                class="campo-pesquisa-header"
+                placeholder="Pesquise aqui"
+                aria-label="Pesquisar"
+            >
+
+            <button
+                class="botao-pesquisa-header"
+                type="submit"
+                aria-label="Pesquisar"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                width="32" height="32"
+                alt = "pes"
+                fill="currentColor"
+                class="bi bi-search text-white icone-pesquisa"
+                viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            </button>
+
+        </form>
+     </div>
+    <!-- Logo -->
+    <img
+        src="./assets/sprites/logo.png"
+        alt="Logo Pokédex"
+        class="logo-topo"
+    >
+
+</header>
 
 
 ========== ./projeto.txt ==========
