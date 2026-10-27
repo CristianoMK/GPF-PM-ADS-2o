@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/pokedex.css">
+    <link rel="stylesheet" href="css/itens.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <title>Catálogo de Itens - GPF</title>
+</head>
+<body class="pagina-itens">
+    <aside id="menu"></aside>
+    <div class="conteudo-principal">
+        <div id="header"></div>
+        <main class="area-principal-pokedex">
+            <h1 class="titulo-catalogo">CATÁLOGO DE ITENS</h1>
+            <div class="barra-pesquisa">
+                <div class="campo-pesquisa">
+                    <button id="botao-pesquisa" type="button" aria-label="Pesquisar item">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="15" y1="15" x2="22" y2="22"></line>
+                        </svg>
+                    </button>
+                    <input id="pesquisa-item" type="text" placeholder="PESQUISAR NOME OU NÚMERO" aria-label="Pesquisar item pelo nome ou número" aria-controls="sugestoes-itens" autocomplete="off">
+                    <div id="sugestoes-itens" class="sugestoes-pokemon" aria-label="Sugestões de itens"></div>
+                </div>
+                <select id="filtro-categoria" class="filtro-tipo" aria-label="Filtrar pela categoria da PokéAPI">
+                    <option value="todas">Todas as categorias</option>
+                </select>
+            </div>
+            <!-- Reutiliza as classes visuais da Pokédex; os ajustes exclusivos ficam em itens.css. -->
+            <div class="conteudo-pokedex">
+                <section class="painel-pokemon">
+                    <div class="card-pokemon card-item">
+                        <div class="cabecalho-card-pokemon">
+                            <span id="numero-item" class="numero-pokemon">—</span>
+                            <h2 id="nome-item">SELECIONE UM ITEM</h2>
+                        </div>
+                        <div class="area-imagem-pokemon">
+                            <img id="imagem-item" width="128" height="128" alt="Imagem do item" hidden>
+                            <span id="item-sem-imagem">Imagem indisponível</span>
+                        </div>
+                        <div class="dados-item">
+                            <p><strong>CATEGORIA:</strong> <span id="categoria-item">—</span></p>
+                            <p><strong>BOLSO:</strong> <span id="bolso-item">—</span></p>
+                            <p><strong>EFEITO:</strong> <span id="descricao-item">Selecione um item para consultar os dados.</span></p>
+                            <p><strong>PREÇO:</strong> <span id="preco-item">—</span></p>
+                            <p id="idioma-item" class="nota-item"></p>
+                            <p id="regra-preco" class="nota-item"></p>
+                        </div>
+                    </div>
+                </section>
+                <section class="painel-lista">
+                    <p id="resumo-itens" role="status" aria-live="polite">Carregando catálogo...</p>
+                    <div id="lista-itens" class="lista-pokemon" tabindex="0" aria-label="Lista de itens"></div>
+                    <p id="mensagem-itens" role="status" aria-live="polite"></p>
+                    <button id="tentar-novamente" class="botao-favorito" type="button" hidden>Tentar novamente</button>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div id="popup-desenvolvimento" class="popup-fundo">
+        <div class="popup-caixa">
+            <h2>Em desenvolvimento</h2>
+            <p>Esta página ainda está sendo desenvolvida.</p>
+            <button id="fechar-popup" type="button">Fechar</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/pesquisa.js"></script>
+    <script src="script.js"></script>
+    <script src="js/itens.js"></script>
+</body>
+</html>

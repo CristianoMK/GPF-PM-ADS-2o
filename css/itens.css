@@ -1,0 +1,58 @@
+.pagina-itens .titulo-catalogo {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.pagina-itens .cabecalho-card-pokemon {
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pagina-itens .cabecalho-card-pokemon h2 {
+    overflow-wrap: anywhere;
+}
+
+.pagina-itens #imagem-item {
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.pagina-itens .dados-item {
+    padding: 18px;
+    border: 2px solid #17233A;
+    border-radius: 18px;
+    overflow-wrap: anywhere;
+}
+
+.pagina-itens .dados-item p {
+    margin: 0 0 12px;
+}
+
+.pagina-itens .nota-item {
+    font-size: 13px;
+    color: #52667A;
+}
+
+.pagina-itens #mensagem-itens {
+    margin: 12px 0 0;
+}
+
+.pagina-itens [hidden],
+.pagina-itens #mensagem-itens:empty {
+    display: none;
+}
+
+.pagina-itens .campo-pesquisa input {
+    min-width: 0;
+}
+
+@media (max-width: 650px) {
+    .pagina-itens .titulo-catalogo {
+        font-size: 23px;
+    }
+
+    .pagina-itens .filtro-tipo {
+        min-height: 46px;
+    }
+}
