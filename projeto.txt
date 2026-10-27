@@ -1,0 +1,2788 @@
+./assets/sprites/card_config.png
+./assets/sprites/card_mapa.png
+./assets/sprites/card_pokedex.png
+./assets/sprites/image.png
+./assets/sprites/logo.png
+./assets/sprites/pokemon.png
+./assets/sprites/lupa_icone.png
+./backend/.gitignore
+./backend/data/favoritos.json
+./backend/package-lock.json
+./backend/package.json
+./backend/rotas/favoritos.js
+./backend/rotas/pokemon.js
+./backend/server.js
+./css/global.css
+./css/index.css
+./css/pokedex.css
+./css/popup.css
+./index.html
+./js/pokedex.js
+./js/popup.js
+./js/pesquisa.js
+./menu.html
+./pokedex.html
+./script.js
+./header.html
+./projeto.txt
+
+
+========== ./backend/.gitignore ==========
+node_modules/
+
+
+========== ./backend/data/favoritos.json ==========
+[]
+
+========== ./backend/package-lock.json ==========
+{
+  "name": "pokedex-backend",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "pokedex-backend",
+      "version": "1.0.0",
+      "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.2"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/accepts": {
+      "version": "1.3.8",
+      "resolved": "https://registry.npmjs.org/accepts/-/accepts-1.3.8.tgz",
+      "integrity": "sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==",
+      "license": "MIT",
+      "dependencies": {
+        "mime-types": "~2.1.34",
+        "negotiator": "0.6.3"
+      },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/array-flatten": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz",
+      "integrity": "sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==",
+      "license": "MIT"
+    },
+    "node_modules/body-parser": {
+      "version": "1.20.6",
+      "resolved": "https://registry.npmjs.org/body-parser/-/body-parser-1.20.6.tgz",
+      "integrity": "sha512-p5tAzS57i5MV9fZFDj9LeIiTZEufbSe2eDozP+ElheSUq1m74CRq1jI4mYNDdVs9vQztXFLuk/Gd6BWTdwRJ5g==",
+      "license": "MIT",
+      "dependencies": {
+        "bytes": "~3.1.2",
+        "content-type": "~1.0.5",
+        "debug": "2.6.9",
+        "depd": "2.0.0",
+        "destroy": "~1.2.0",
+        "http-errors": "~2.0.1",
+        "iconv-lite": "~0.4.24",
+        "on-finished": "~2.4.1",
+        "qs": "~6.15.1",
+        "raw-body": "~2.5.3",
+        "type-is": "~1.6.18",
+        "unpipe": "~1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.8",
+        "npm": "1.2.8000 || >= 1.4.16"
+      }
+    },
+    "node_modules/bytes": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",
+      "integrity": "sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/call-bind-apply-helpers": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",
+      "integrity": "sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "function-bind": "^1.1.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/call-bound": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",
+      "integrity": "sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.2",
+        "get-intrinsic": "^1.3.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/content-disposition": {
+      "version": "0.5.4",
+      "resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-0.5.4.tgz",
+      "integrity": "sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==",
+      "license": "MIT",
+      "dependencies": {
+        "safe-buffer": "5.2.1"
+      },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/content-type": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz",
+      "integrity": "sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/cookie": {
+      "version": "0.7.2",
+      "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz",
+      "integrity": "sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/cookie-signature": {
+      "version": "1.0.7",
+      "resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.7.tgz",
+      "integrity": "sha512-NXdYc3dLr47pBkpUCHtKSwIOQXLVn8dZEuywboCOJY/osA0wFSLlSawr3KN8qXJEyX66FcONTH8EIlVuK0yyFA==",
+      "license": "MIT"
+    },
+    "node_modules/cors": {
+      "version": "2.8.6",
+      "resolved": "https://registry.npmjs.org/cors/-/cors-2.8.6.tgz",
+      "integrity": "sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw==",
+      "license": "MIT",
+      "dependencies": {
+        "object-assign": "^4",
+        "vary": "^1"
+      },
+      "engines": {
+        "node": ">= 0.10"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/debug": {
+      "version": "2.6.9",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
+      "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
+      "license": "MIT",
+      "dependencies": {
+        "ms": "2.0.0"
+      }
+    },
+    "node_modules/depd": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz",
+      "integrity": "sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/destroy": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",
+      "integrity": "sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8",
+        "npm": "1.2.8000 || >= 1.4.16"
+      }
+    },
+    "node_modules/dunder-proto": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",
+      "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.1",
+        "es-errors": "^1.3.0",
+        "gopd": "^1.2.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/ee-first": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",
+      "integrity": "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==",
+      "license": "MIT"
+    },
+    "node_modules/encodeurl": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.0.tgz",
+      "integrity": "sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/es-define-property": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+      "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/es-errors": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",
+      "integrity": "sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/es-object-atoms": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.2.tgz",
+      "integrity": "sha512-HWcBoN6NileqtSydK2FqHbS/LoDd2pqrnQHLyJzBj4kOp/ky2MWMN694xOfkK8/SnUsW2DH7EfyVlydKCsm1Zw==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/escape-html": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz",
+      "integrity": "sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==",
+      "license": "MIT"
+    },
+    "node_modules/etag": {
+      "version": "1.8.1",
+      "resolved": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz",
+      "integrity": "sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/express": {
+      "version": "4.22.2",
+      "resolved": "https://registry.npmjs.org/express/-/express-4.22.2.tgz",
+      "integrity": "sha512-IuL+Elrou2ZvCFHs18/CIzy2Nzvo25nZ1/D2eIZlz7c+QUayAcYoiM2BthCjs+EBHVpjYjcuLDAiCWgeIX3X1Q==",
+      "license": "MIT",
+      "dependencies": {
+        "accepts": "~1.3.8",
+        "array-flatten": "1.1.1",
+        "body-parser": "~1.20.5",
+        "content-disposition": "~0.5.4",
+        "content-type": "~1.0.4",
+        "cookie": "~0.7.1",
+        "cookie-signature": "~1.0.6",
+        "debug": "2.6.9",
+        "depd": "2.0.0",
+        "encodeurl": "~2.0.0",
+        "escape-html": "~1.0.3",
+        "etag": "~1.8.1",
+        "finalhandler": "~1.3.1",
+        "fresh": "~0.5.2",
+        "http-errors": "~2.0.0",
+        "merge-descriptors": "1.0.3",
+        "methods": "~1.1.2",
+        "on-finished": "~2.4.1",
+        "parseurl": "~1.3.3",
+        "path-to-regexp": "~0.1.12",
+        "proxy-addr": "~2.0.7",
+        "qs": "~6.15.1",
+        "range-parser": "~1.2.1",
+        "safe-buffer": "5.2.1",
+        "send": "~0.19.0",
+        "serve-static": "~1.16.2",
+        "setprototypeof": "1.2.0",
+        "statuses": "~2.0.1",
+        "type-is": "~1.6.18",
+        "utils-merge": "1.0.1",
+        "vary": "~1.1.2"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/finalhandler": {
+      "version": "1.3.2",
+      "resolved": "https://registry.npmjs.org/finalhandler/-/finalhandler-1.3.2.tgz",
+      "integrity": "sha512-aA4RyPcd3badbdABGDuTXCMTtOneUCAYH/gxoYRTZlIJdF0YPWuGqiAsIrhNnnqdXGswYk6dGujem4w80UJFhg==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "2.6.9",
+        "encodeurl": "~2.0.0",
+        "escape-html": "~1.0.3",
+        "on-finished": "~2.4.1",
+        "parseurl": "~1.3.3",
+        "statuses": "~2.0.2",
+        "unpipe": "~1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/forwarded": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",
+      "integrity": "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/fresh": {
+      "version": "0.5.2",
+      "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz",
+      "integrity": "sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/function-bind": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+      "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+      "license": "MIT",
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/get-intrinsic": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",
+      "integrity": "sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.2",
+        "es-define-property": "^1.0.1",
+        "es-errors": "^1.3.0",
+        "es-object-atoms": "^1.1.1",
+        "function-bind": "^1.1.2",
+        "get-proto": "^1.0.1",
+        "gopd": "^1.2.0",
+        "has-symbols": "^1.1.0",
+        "hasown": "^2.0.2",
+        "math-intrinsics": "^1.1.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/get-proto": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",
+      "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+      "license": "MIT",
+      "dependencies": {
+        "dunder-proto": "^1.0.1",
+        "es-object-atoms": "^1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/gopd": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+      "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/has-symbols": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+      "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/hasown": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.4.tgz",
+      "integrity": "sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==",
+      "license": "MIT",
+      "dependencies": {
+        "function-bind": "^1.1.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/http-errors": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.1.tgz",
+      "integrity": "sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==",
+      "license": "MIT",
+      "dependencies": {
+        "depd": "~2.0.0",
+        "inherits": "~2.0.4",
+        "setprototypeof": "~1.2.0",
+        "statuses": "~2.0.2",
+        "toidentifier": "~1.0.1"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/iconv-lite": {
+      "version": "0.4.24",
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",
+      "integrity": "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==",
+      "license": "MIT",
+      "dependencies": {
+        "safer-buffer": ">= 2.1.2 < 3"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/inherits": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
+      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",
+      "license": "ISC"
+    },
+    "node_modules/ipaddr.js": {
+      "version": "1.9.1",
+      "resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",
+      "integrity": "sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.10"
+      }
+    },
+    "node_modules/math-intrinsics": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+      "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/media-typer": {
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",
+      "integrity": "sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/merge-descriptors": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.3.tgz",
+      "integrity": "sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==",
+      "license": "MIT",
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/methods": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz",
+      "integrity": "sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/mime": {
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz",
+      "integrity": "sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==",
+      "license": "MIT",
+      "bin": {
+        "mime": "cli.js"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/mime-db": {
+      "version": "1.52.0",
+      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",
+      "integrity": "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/mime-types": {
+      "version": "2.1.35",
+      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",
+      "integrity": "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==",
+      "license": "MIT",
+      "dependencies": {
+        "mime-db": "1.52.0"
+      },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/ms": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
+      "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==",
+      "license": "MIT"
+    },
+    "node_modules/negotiator": {
+      "version": "0.6.3",
+      "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz",
+      "integrity": "sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/object-assign": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+      "integrity": "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/object-inspect": {
+      "version": "1.13.4",
+      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
+      "integrity": "sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/on-finished": {
+      "version": "2.4.1",
+      "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.1.tgz",
+      "integrity": "sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==",
+      "license": "MIT",
+      "dependencies": {
+        "ee-first": "1.1.1"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/parseurl": {
+      "version": "1.3.3",
+      "resolved": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz",
+      "integrity": "sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/path-to-regexp": {
+      "version": "0.1.13",
+      "resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.13.tgz",
+      "integrity": "sha512-A/AGNMFN3c8bOlvV9RreMdrv7jsmF9XIfDeCd87+I8RNg6s78BhJxMu69NEMHBSJFxKidViTEdruRwEk/WIKqA==",
+      "license": "MIT"
+    },
+    "node_modules/proxy-addr": {
+      "version": "2.0.7",
+      "resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz",
+      "integrity": "sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==",
+      "license": "MIT",
+      "dependencies": {
+        "forwarded": "0.2.0",
+        "ipaddr.js": "1.9.1"
+      },
+      "engines": {
+        "node": ">= 0.10"
+      }
+    },
+    "node_modules/qs": {
+      "version": "6.15.3",
+      "resolved": "https://registry.npmjs.org/qs/-/qs-6.15.3.tgz",
+      "integrity": "sha512-O9gl3zCl5h5blw1KGUzQKhA5oUXSl8rwUIM5o0S3nCXMliSvy5Dzx7/DJcI+SwgICv+IneSZwhBh1oSyEHA71A==",
+      "license": "BSD-3-Clause",
+      "dependencies": {
+        "es-define-property": "^1.0.1",
+        "side-channel": "^1.1.1"
+      },
+      "engines": {
+        "node": ">=0.6"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/range-parser": {
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz",
+      "integrity": "sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/raw-body": {
+      "version": "2.5.3",
+      "resolved": "https://registry.npmjs.org/raw-body/-/raw-body-2.5.3.tgz",
+      "integrity": "sha512-s4VSOf6yN0rvbRZGxs8Om5CWj6seneMwK3oDb4lWDH0UPhWcxwOWw5+qk24bxq87szX1ydrwylIOp2uG1ojUpA==",
+      "license": "MIT",
+      "dependencies": {
+        "bytes": "~3.1.2",
+        "http-errors": "~2.0.1",
+        "iconv-lite": "~0.4.24",
+        "unpipe": "~1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/safe-buffer": {
+      "version": "5.2.1",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
+    },
+    "node_modules/safer-buffer": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
+      "license": "MIT"
+    },
+    "node_modules/send": {
+      "version": "0.19.2",
+      "resolved": "https://registry.npmjs.org/send/-/send-0.19.2.tgz",
+      "integrity": "sha512-VMbMxbDeehAxpOtWJXlcUS5E8iXh6QmN+BkRX1GARS3wRaXEEgzCcB10gTQazO42tpNIya8xIyNx8fll1OFPrg==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "2.6.9",
+        "depd": "2.0.0",
+        "destroy": "1.2.0",
+        "encodeurl": "~2.0.0",
+        "escape-html": "~1.0.3",
+        "etag": "~1.8.1",
+        "fresh": "~0.5.2",
+        "http-errors": "~2.0.1",
+        "mime": "1.6.0",
+        "ms": "2.1.3",
+        "on-finished": "~2.4.1",
+        "range-parser": "~1.2.1",
+        "statuses": "~2.0.2"
+      },
+      "engines": {
+        "node": ">= 0.8.0"
+      }
+    },
+    "node_modules/send/node_modules/ms": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
+      "license": "MIT"
+    },
+    "node_modules/serve-static": {
+      "version": "1.16.3",
+      "resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.16.3.tgz",
+      "integrity": "sha512-x0RTqQel6g5SY7Lg6ZreMmsOzncHFU7nhnRWkKgWuMTu5NN0DR5oruckMqRvacAN9d5w6ARnRBXl9xhDCgfMeA==",
+      "license": "MIT",
+      "dependencies": {
+        "encodeurl": "~2.0.0",
+        "escape-html": "~1.0.3",
+        "parseurl": "~1.3.3",
+        "send": "~0.19.1"
+      },
+      "engines": {
+        "node": ">= 0.8.0"
+      }
+    },
+    "node_modules/setprototypeof": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz",
+      "integrity": "sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==",
+      "license": "ISC"
+    },
+    "node_modules/side-channel": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.1.tgz",
+      "integrity": "sha512-6x6dK6zJdpTzF4sQeNYxwtvBzf6Eg4GtlesS94HOvTudUeyK2WXAaIfmDgsyslYrRBeFIlsi54AYsFGUuhmvrQ==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "object-inspect": "^1.13.4",
+        "side-channel-list": "^1.0.1",
+        "side-channel-map": "^1.0.1",
+        "side-channel-weakmap": "^1.0.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-list": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",
+      "integrity": "sha512-mjn/0bi/oUURjc5Xl7IaWi/OJJJumuoJFQJfDDyO46+hBWsfaVM65TBHq2eoZBhzl9EchxOijpkbRC8SVBQU0w==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "object-inspect": "^1.13.4"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-map": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/side-channel-map/-/side-channel-map-1.0.1.tgz",
+      "integrity": "sha512-VCjCNfgMsby3tTdo02nbjtM/ewra6jPHmpThenkTYh8pG9ucZ/1P8So4u4FGBek/BjpOVsDCMoLA/iuBKIFXRA==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "es-errors": "^1.3.0",
+        "get-intrinsic": "^1.2.5",
+        "object-inspect": "^1.13.3"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-weakmap": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz",
+      "integrity": "sha512-WPS/HvHQTYnHisLo9McqBHOJk2FkHO/tlpvldyrnem4aeQp4hai3gythswg6p01oSoTl58rcpiFAjF2br2Ak2A==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "es-errors": "^1.3.0",
+        "get-intrinsic": "^1.2.5",
+        "object-inspect": "^1.13.3",
+        "side-channel-map": "^1.0.1"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/statuses": {
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/statuses/-/statuses-2.0.2.tgz",
+      "integrity": "sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/toidentifier": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz",
+      "integrity": "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.6"
+      }
+    },
+    "node_modules/type-is": {
+      "version": "1.6.18",
+      "resolved": "https://registry.npmjs.org/type-is/-/type-is-1.6.18.tgz",
+      "integrity": "sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==",
+      "license": "MIT",
+      "dependencies": {
+        "media-typer": "0.3.0",
+        "mime-types": "~2.1.24"
+      },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/unpipe": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz",
+      "integrity": "sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/utils-merge": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz",
+      "integrity": "sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4.0"
+      }
+    },
+    "node_modules/vary": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz",
+      "integrity": "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    }
+  }
+}
+
+
+========== ./backend/package.json ==========
+{
+  "name": "pokedex-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API REST intermediária entre a Pokédex e a PokéAPI.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
+
+
+========== ./backend/rotas/favoritos.js ==========
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+
+const router = express.Router();
+const arquivoFavoritos = path.join(__dirname, '..', 'data', 'favoritos.json');
+
+function lerFavoritos() {
+    try {
+        const dados = fs.readFileSync(arquivoFavoritos, 'utf8');
+
+        return JSON.parse(dados);
+    } catch (erro) {
+        return [];
+    }
+}
+
+function salvarFavoritos(favoritos) {
+    fs.writeFileSync(arquivoFavoritos, JSON.stringify(favoritos, null, 2));
+}
+
+router.get('/favoritos', function (req, res) {
+    const favoritos = lerFavoritos();
+
+    res.json(favoritos);
+});
+
+router.post('/favoritos', function (req, res) {
+    const pokemon = req.body;
+
+    if (!pokemon.id || !pokemon.nome) {
+        return res.status(400).json({
+            erro: 'Dados do Pokémon inválidos'
+        });
+    }
+
+    const favoritos = lerFavoritos();
+    const jaExiste = favoritos.some(function (item) {
+        return item.id === pokemon.id;
+    });
+
+    if (jaExiste) {
+        return res.status(400).json({
+            erro: 'Pokémon já está nos favoritos'
+        });
+    }
+
+    favoritos.push(pokemon);
+    salvarFavoritos(favoritos);
+
+    res.json(pokemon);
+});
+
+router.delete('/favoritos/:id', function (req, res) {
+    const id = Number(req.params.id);
+    let favoritos = lerFavoritos();
+
+    favoritos = favoritos.filter(function (item) {
+        return item.id !== id;
+    });
+
+    salvarFavoritos(favoritos);
+
+    res.json({
+        mensagem: 'Favorito removido'
+    });
+});
+
+module.exports = router;
+
+
+========== ./backend/rotas/pokemon.js ==========
+const express = require('express');
+
+const router = express.Router();
+
+router.get('/pokemon/:id', function (req, res) {
+    const id = req.params.id;
+
+    fetch('https://pokeapi.co/api/v2/pokemon/' + id)
+        .then(function (resposta) {
+            if (!resposta.ok) {
+                throw new Error('Pokémon não encontrado');
+            }
+
+            return resposta.json();
+        })
+        .then(function (pokemon) {
+            res.json(pokemon);
+        })
+        .catch(function () {
+            res.status(404).json({
+                erro: 'Pokémon não encontrado'
+            });
+        });
+});
+
+router.get('/pesquisa', function (req, res) {
+    const nome = req.query.nome;
+
+    if (!nome) {
+        return res.status(400).json({
+            erro: 'Informe o nome do Pokémon'
+        });
+    }
+
+    fetch('https://pokeapi.co/api/v2/pokemon/' + nome.toLowerCase())
+        .then(function (resposta) {
+            if (!resposta.ok) {
+                throw new Error('Pokémon não encontrado');
+            }
+
+            return resposta.json();
+        })
+        .then(function (pokemon) {
+            res.json(pokemon);
+        })
+        .catch(function () {
+            res.status(404).json({
+                erro: 'Pokémon não encontrado'
+            });
+        });
+});
+
+module.exports = router;
+
+
+========== ./backend/server.js ==========
+const express = require('express');
+const cors = require('cors');
+
+const pokemonRoutes = require('./rotas/pokemon');
+const favoritosRoutes = require('./rotas/favoritos');
+
+const app = express();
+const porta = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/api', pokemonRoutes);
+app.use('/api', favoritosRoutes);
+
+app.get('/', function (req, res) {
+    res.send('Backend da Pokédex funcionando');
+});
+
+app.listen(porta, function () {
+    console.log('Servidor rodando na porta ' + porta);
+});
+
+
+========== ./css/global.css ==========
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Cabeçalho compartilhado */
+
+.topo {
+    height: 76px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 0 28px;
+
+    color: #FFFFFF;
+    background-color: #17233A;
+
+    border-bottom: 5px solid #00C2D7;
+}
+
+/* Botão do menu */
+
+.botao-menu {
+    display: none;
+
+    padding: 0;
+
+    color: #FFFFFF;
+    background: transparent;
+
+    border: 0;
+    cursor: pointer;
+}
+
+/* Barra de pesquisa */
+
+.barra-pesquisa-header {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+
+    display: flex;
+    align-items: stretch;
+
+    overflow: hidden;
+
+    background-color: #FFFFFF;
+
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+/* Categoria */
+
+.categoria-pesquisa {
+    width: 115px;
+    min-width: 0;
+
+    padding: 0 8px;
+
+    color: #17202F;
+    font-size: 13px;
+    font-weight: bold;
+
+    background-color: #EAF2F7;
+
+    border: 0;
+    border-right: 1px solid #17233A;
+
+    outline: none;
+}
+
+/* Campo de texto */
+
+.campo-pesquisa-header {
+    flex: 1;
+    min-width: 0;
+
+    padding: 0 12px;
+
+    color: #17202F;
+    font-size: 14px;
+
+    background-color: #FFFFFF;
+
+    border: 0;
+    outline: none;
+}
+
+/* Placeholder */
+
+.campo-pesquisa-header::placeholder {
+    color: #8AA5BC;
+}
+
+/* Botão de pesquisa */
+
+.botao-pesquisa-header {
+    width: 44px;
+    min-width: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background-color: #00C2D7;
+
+    border: 0;
+    border-left: 1px solid #17233A;
+
+    cursor: pointer;
+}
+
+/* Imagem da lupa */
+
+.botao-pesquisa-header img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+}
+
+/* Logo */
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+
+    justify-self: end;
+
+    object-fit: contain;
+}
+
+/* Menu lateral */
+
+#menu {
+    width: 182px;
+    flex-shrink: 0;
+}
+.topo h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 31px;
+}
+
+.botao-pesquisa {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icone-pesquisa {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-topo {
+    width: 45px;
+    height: 45px;
+    justify-self: end;
+    object-fit: contain;
+}
+
+#menu {
+    width: 182px;
+    flex-shrink: 0;
+}
+/* Sidebar compartilhada */
+
+
+.menu_lateral {
+    position: fixed;
+    width: 182px;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: #17233A;
+    border-right: 3px solid #00C2D7;
+}
+
+.cabecalho-menu,
+.menu_lista,
+.frase-menu {
+    position: relative;
+    z-index: 1;
+}
+
+.cabecalho-menu {
+    padding: 14px 12px 10px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.cabecalho-menu strong {
+    display: block;
+    font-size: 14px;
+}
+
+.cabecalho-menu h2 {
+    margin: 8px 0 2px;
+    font-size: 20px;
+}
+
+.cabecalho-menu span {
+    font-size: 12px;
+}
+
+.logo-menu {
+    width: 85px;
+    height: auto;
+    display: block;
+    margin: 0 auto 8px;
+}
+
+.menu_lista {
+    margin: 0;
+    padding: 0 12px;
+    list-style: none;
+}
+
+.menu_item {
+    display: block;
+    margin: 0 0 7px;
+    padding: 9px 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 9px;
+}
+
+.menu_item:hover {
+    color: #FFFFFF;
+    background: #243552;
+}
+
+.menu_item.ativo:not(.em-desenvolvimento) {
+    color: #17202F;
+    background: #EAF2F7;
+    border-color: #00C2D7;
+}
+
+.frase-menu {
+    margin: auto 10px 15px;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.pokebola-decoracao {
+    position: absolute;
+    z-index: 0;
+    bottom: 55px;
+    left: -72px;
+    width: 145px;
+    height: 145px;
+    overflow: hidden;
+    opacity: 0.18;
+    background: #8FA0B8;
+    border-radius: 50%;
+}
+
+.linha-pokebola {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #17233A;
+    transform: translateY(-50%);
+}
+
+.centro-pokebola {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 42px;
+    background: #8FA0B8;
+    border: 10px solid #17233A;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#header {
+    width: 100%;
+}
+/* Botão de menu: escondido por padrão */
+.botao-menu {
+    display: none;
+    padding: 0;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+/* Telas menores que 768px */
+@media (max-width: 767.98px) {
+
+    /* Menu lateral */
+
+    #menu {
+        width: 0;
+        flex: 0 0 0;
+    }
+
+    .menu_lateral {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1050;
+
+        width: 182px;
+        height: 100vh;
+        height: 100dvh;
+
+        overflow-y: auto;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    #menu.menu-aberto .menu_lateral {
+        transform: translateX(0);
+    }
+
+    /* Cabeçalho */
+
+     .topo {
+        grid-template-columns: 32px minmax(0, 1fr) 38px;
+        gap: 8px;
+        padding: 0 12px;
+    }
+
+    /* Botão do menu */
+
+    .botao-menu {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Barra de pesquisa */
+
+    .barra-pesquisa-header {
+        height: 38px;
+    }
+
+    .categoria-pesquisa {
+        width: 85px;
+
+        padding: 0 4px;
+
+        font-size: 11px;
+    }
+
+    .campo-pesquisa-header {
+        padding: 0 6px;
+
+        font-size: 12px;
+    }
+
+    .botao-pesquisa-header {
+        width: 34px;
+        min-width: 34px;
+    }
+
+    .botao-pesquisa-header img {
+        width: 19px;
+        height: 19px;
+    }
+
+    /* Logo */
+
+    .logo-topo {
+        flex-shrink: 0;
+    }
+
+    /* Fundo do menu */
+
+    .fundo-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 1040;
+
+        background: rgb(0 0 0 / 45%);
+    }
+}
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .menu_lateral {
+        transition: none;
+    }
+}
+
+========== ./css/index.css ==========
+/* Geral */
+.pagina-inicial {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    font-family: Arial, sans-serif;
+    color: #17202F;
+    background-color: #FFFFFF;
+}
+
+/* Conteúdo */
+.conteudo {
+    width: 100%;
+    max-width: 1400px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 60px 40px 77px;
+}
+
+.conteudo h2 {
+    margin: 0 0 7px;
+    font-size: 37px;
+}
+
+.subtitulo {
+    margin: 0 0 18px;
+    color: #1F7AA8;
+    font-size: 15px;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.card {
+    min-height: 248px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 29px;
+    color: #17202F;
+    text-decoration: none;
+    background-color: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px #17233A33;
+}
+
+.card-texto {
+    max-width: 330px;
+}
+
+.card h3 {
+    margin: 0 0 7px;
+    font-size: 37px;
+}
+
+.categoria {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pokemon {
+    color: #00C2D7;
+}
+
+.catalogo {
+    color: #69C9BE;
+}
+
+.regiao {
+    color: #1F7AA8;
+}
+
+.sistema {
+    color: #D3A700;
+}
+
+.card hr {
+    width: 210px;
+    margin: 13px 0 15px;
+    border: 0;
+    border-top: 2px solid #17202F;
+}
+
+.card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.seta {
+    display: block;
+    margin-top: 18px;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 18px;
+}
+
+/*.imagem-card {
+    width: 176px;
+    min-width: 176px;
+    height: 209px;
+    margin-left: 20px;
+    align-self: center;
+    object-fit: contain;
+}
+
+.imagem-card-pokedex {
+    position: relative;
+    width: 176px;
+    height: 209px;
+    margin-left: 20px;
+    align-self: center;
+}
+*/
+.card-base {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pokemon-card {
+    position: absolute;
+    z-index: 2;
+    top: 23px;
+    left: 18px;
+    width: 143px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* TELA PEQUENA ou CELULAR */
+@media (max-width: 767.98px) {
+    .topo {
+        grid-template-columns: 40px 40px minmax(0, 1fr) 40px;
+        gap: 6px;
+        padding: 0 12px;
+    }
+
+    .topo h1 {
+        font-size: clamp(16px, 4vw, 23px);
+        overflow-wrap: anywhere;
+    }
+
+    .botao-menu {
+        justify-self: start;
+    }
+
+    .botao-pesquisa {
+        justify-self: center;
+    }
+
+    .logo-topo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .conteudo {
+        padding: 28px 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+========== ./css/pokedex.css ==========
+/* Estrutura geral */
+.pagina-pokedex {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    font-family: Arial, sans-serif;
+    color: #17202F;
+    background: #FFFFFF;
+}
+
+.conteudo-principal-pokedex {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Cabeçalho 
+.topo-pokedex {
+    height: 90px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    align-items: center;
+    padding: 0 35px;
+    color: #FFFFFF;
+    background: #17233A;
+    border-bottom: 5px solid #00C2D7;
+}
+
+.topo-pokedex h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 38px;
+}
+
+.icone-pesquisa-pokedex {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-topo-pokedex {
+    width: 54px;
+    height: 54px;
+    justify-self: end;
+    object-fit: contain;
+}
+
+/* Pesquisa */
+.area-principal-pokedex {
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 24px 40px 50px;
+}
+
+.barra-pesquisa {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 24px;
+    margin-bottom: 25px;
+}
+
+.campo-pesquisa {
+    height: 46px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+.campo-pesquisa img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.campo-pesquisa input {
+    width: 100%;
+    padding: 0 12px;
+    color: #17202F;
+    font-weight: bold;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.campo-pesquisa input::placeholder {
+    color: #8AA5BC;
+}
+
+.filtro-tipo {
+    padding: 0 15px;
+    color: #17202F;
+    font-weight: bold;
+    background: #F7FAFC;
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+/* Conteúdo */
+.conteudo-pokedex {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* Card do Pokémon */
+.card-pokemon {
+    min-height: 575px;
+    box-sizing: border-box;
+    padding: 18px 28px 22px;
+    background: #FFFFFF;
+    border: 3px solid #17233A;
+    border-radius: 20px;
+}
+
+.cabecalho-card-pokemon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.numero-pokemon,
+.cabecalho-card-pokemon h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.area-imagem-pokemon {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0 22px;
+    color: #6C8091;
+    font-weight: bold;
+    background: #F7FAFC;
+    border: 2px solid #17233A;
+    border-radius: 20px;
+}
+
+/* Dados */
+.informacoes-pokemon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 18px;
+    border: 2px solid #17233A;
+    border-radius: 18px;
+}
+
+.tipos-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tipos-pokemon strong,
+.dados-pokemon p,
+.titulo-status {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.dados-pokemon p {
+    margin: 5px 0;
+}
+
+.tipo {
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+.lutador {
+    background: #72BBC0;
+}
+
+.aco {
+    background: #F4D34F;
+}
+
+/* Status */
+.titulo-status {
+    display: block;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.linha-status {
+    display: grid;
+    grid-template-columns: 28px 1fr 30px;
+    gap: 7px;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 11px;
+}
+
+.barra-status {
+    height: 14px;
+    overflow: hidden;
+    background: #EAF2F7;
+    border-radius: 3px;
+}
+
+.preenchimento {
+    height: 100%;
+    background: #17233A;
+    border-radius: 3px;
+}
+
+.ps,
+.def {
+    width: 65%;
+}
+
+.atk {
+    width: 100%;
+}
+
+.vel {
+    width: 82%;
+}
+
+.botao-favorito {
+    display: block;
+    width: 265px;
+    margin: 18px auto 0;
+    padding: 13px;
+    color: #17202F;
+    font-weight: bold;
+    cursor: pointer;
+    background: #00C2D7;
+    border: 2px solid #17233A;
+    border-radius: 22px;
+}
+
+/* Lista de Pokémon */
+.painel-lista {
+    min-height: 575px;
+    box-sizing: border-box;
+    padding: 16px;
+    background: #EAF2F7;
+    border: 3px solid #17233A;
+    border-radius: 20px;
+}
+
+.lista-pokemon {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-pokemon {
+    min-height: 52px;
+    padding: 0 15px;
+    color: #17202F;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    background: #F7FAFC;
+    border: 1px solid #17233A;
+    border-radius: 5px;
+}
+
+.item-pokemon.ativo {
+    background: #D7E9F4;
+    border-color: #00C2D7;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .conteudo-pokedex {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .painel-lista {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .topo-pokedex h1 {
+        font-size: 28px;
+    }
+
+    .area-principal-pokedex {
+        padding: 18px;
+    }
+
+    .barra-pesquisa,
+    .informacoes-pokemon {
+        grid-template-columns: 1fr;
+    }
+
+    .card-pokemon {
+        padding: 15px;
+    }
+}
+
+
+========== ./css/popup.css ==========
+/* Popup de páginas em desenvolvimento */
+.popup-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.popup-fundo.mostrar-popup {
+    display: flex;
+}
+
+.popup-caixa {
+    width: 340px;
+    padding: 28px;
+    text-align: center;
+    background: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+.popup-caixa h2 {
+    margin: 0 0 10px;
+    color: #17202F;
+    font-size: 26px;
+}
+
+.popup-caixa p {
+    margin: 0;
+    color: #17202F;
+    font-size: 14px;
+}
+
+.popup-caixa button {
+    margin-top: 20px;
+    padding: 10px 28px;
+    color: #17202F;
+    font-weight: bold;
+    cursor: pointer;
+    background: #00C2D7;
+    border: 0;
+    border-radius: 8px;
+}
+
+.popup-caixa button:hover {
+    background: #14D5E8;
+}
+
+/* pesquisa */
+
+
+
+#modal-pesquisa .modal-content {
+    color: #17202F;
+    background: #EAF2F7;
+    border: 2px solid #17233A;
+    border-radius: 15px;
+}
+
+#modal-pesquisa .modal-header {
+    border-bottom: 2px solid #17233A;
+}
+
+#modal-pesquisa .modal-title {
+    font-weight: bold;
+}
+
+#modal-pesquisa .form-label {
+    font-weight: bold;
+}
+
+#modal-pesquisa .form-control {
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+#modal-pesquisa .btn-primary {
+    color: #17202F;
+    font-weight: bold;
+    background: #00C2D7;
+    border-color: #00C2D7;
+}
+
+#modal-pesquisa .btn-primary:hover {
+    background: #14D5E8;
+    border-color: #14D5E8;
+}
+
+========== ./index.html ==========
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 5.3 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <title>Pokédex Beast Ball</title>
+</head>
+
+<body class="pagina-inicial">
+
+    <!-- menu carregado pelo script.js -->
+    <aside id="menu"></aside>
+
+    <div class="conteudo-principal">
+        <div id="header"></div>
+
+        <main class="conteudo">
+            <h2>Acesso rápido</h2>
+            <p class="subtitulo">Navegue pelas áreas principais da Pokédex Beast Ball.</p>
+            <div class="cards">
+                <a class="card" href="pokedex.html">
+                    <div class="card-texto">
+                        <h3>POKÉDEX</h3>
+                        <span class="categoria pokemon">POKÉMONS</span>
+                        <hr>
+                        <p>Explore criaturas com pouco destaque no anime e nos jogos.</p>
+                        <span class="seta">&gt;</span></div>
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto">
+                        <h3>ITENS</h3>
+                        <span class="categoria catalogo">CATÁLOGO</span>
+                        <hr>
+                        <p>Veja itens, raridades e efeitos com visual limpo e direto.</p>
+                        <span class="seta">&gt;</span>
+                    </div>
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto">
+                        <h3>MAPA</h3>
+                        <span class="categoria regiao">REGIÕES</span>
+                        <hr>
+                        <p>Navegue por regiões, rotas e áreas especiais da Pokédex.</p>
+                        <span class="seta">&gt;</span>
+                    </div>
+                </a>
+                <a class="card em-desenvolvimento" href="#">
+                    <div class="card-texto">
+                        <h3>CONFIG</h3>
+                        <span class="categoria sistema">SISTEMA</span>
+                        <hr>
+                        <p>Preferências, tema e progresso do usuário no projeto.</p>
+                        <span class="seta">&gt;</span>
+                    </div>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <div id="popup-desenvolvimento" class="popup-fundo">
+        <div class="popup-caixa">
+            <h2>Em desenvolvimento</h2>
+            <p>Esta página ainda está sendo desenvolvida.</p>
+            <button id="fechar-popup" type="button">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="js/popup.js"></script>
+    <script src="script.js"></script>
+    <script src="js/pokedex.js"></script>
+</body>
+</html>
+
+
+========== ./js/pokedex.js ==========
+const pokemonsProjeto = [
+    {
+        id: 448,
+        nome: "lucario"
+    },
+    {
+        id: 457,
+        nome: "lumineon"
+    },
+    {
+        id: 746,
+        nome: "wishiwashi"
+    },
+    {
+        id: 778,
+        nome: "mimikyu"
+    },
+    {
+        id: 479,
+        nome: "rotom"
+    }
+];
+
+let pokemonsCarregados = [];
+let pokemonAtual = null;
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+function carregarPokemons() {
+    pokemonsProjeto.forEach(function (pokemon) {
+        fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon.id)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
+                pokemonsCarregados.push(dados);
+
+                if (dados.id === 448) {
+                    mostrarPokemon(dados);
+                }
+
+                if (pokemonsCarregados.length === pokemonsProjeto.length) {
+                    mostrarListaPokemons(pokemonsCarregados);
+                    carregarTiposFiltro();
+                }
+            })
+            .catch(function (erro) {
+                console.log("Erro ao carregar Pokémon:", erro);
+            });
+    });
+}
+
+function adicionarPokemonNaLista(pokemon) {
+    const lista = document.getElementById("lista-pokemon");
+    const botao = document.createElement("button");
+
+    botao.classList.add("item-pokemon");
+    botao.type = "button";
+    botao.textContent = "Nº" + pokemon.id + " " + pokemon.name.toUpperCase();
+
+    if (pokemonAtual && pokemon.id === pokemonAtual.id) {
+        botao.classList.add("ativo");
+    }
+
+    botao.addEventListener("click", function () {
+        const itens = document.querySelectorAll(".item-pokemon");
+
+        itens.forEach(function (item) {
+            item.classList.remove("ativo");
+        });
+
+        botao.classList.add("ativo");
+        mostrarPokemon(pokemon);
+    });
+
+    lista.appendChild(botao);
+}
+
+function mostrarListaPokemons(listaPokemons) {
+    const lista = document.getElementById("lista-pokemon");
+
+    lista.innerHTML = "";
+
+    if (listaPokemons.length === 0) {
+        const mensagem = document.createElement("p");
+        mensagem.textContent = "Nenhum Pokémon favorito.";
+        lista.appendChild(mensagem);
+        return;
+    }
+
+    listaPokemons.forEach(function (pokemon) {
+        adicionarPokemonNaLista(pokemon);
+    });
+}
+
+function mostrarPokemon(pokemon) {
+    pokemonAtual = pokemon;
+
+    document.getElementById("numero-pokemon").textContent = "Nº" + pokemon.id;
+    document.getElementById("nome-pokemon").textContent = pokemon.name.toUpperCase();
+    document.getElementById("altura-pokemon").textContent = (pokemon.height / 10) + " m";
+    document.getElementById("peso-pokemon").textContent = (pokemon.weight / 10) + " kg";
+    document.getElementById("imagem-pokemon").src = pokemon.sprites.other["official-artwork"].front_default;
+
+    const areaTipos = document.getElementById("tipos-pokemon");
+    areaTipos.innerHTML = "<strong>TIPO</strong>";
+
+    pokemon.types.forEach(function (tipo) {
+        const span = document.createElement("span");
+
+        span.classList.add("tipo", "tipo-pokemon");
+        span.textContent = tipo.type.name;
+        areaTipos.appendChild(span);
+    });
+
+    document.getElementById("status-ps").textContent = pokemon.stats[0].base_stat;
+    document.getElementById("status-atk").textContent = pokemon.stats[1].base_stat;
+    document.getElementById("status-def").textContent = pokemon.stats[2].base_stat;
+    document.getElementById("status-vel").textContent = pokemon.stats[5].base_stat;
+
+    document.getElementById("barra-ps").style.width = Math.min(pokemon.stats[0].base_stat, 100) + "%";
+    document.getElementById("barra-atk").style.width = Math.min(pokemon.stats[1].base_stat, 100) + "%";
+    document.getElementById("barra-def").style.width = Math.min(pokemon.stats[2].base_stat, 100) + "%";
+    document.getElementById("barra-vel").style.width = Math.min(pokemon.stats[5].base_stat, 100) + "%";
+
+    atualizarBotaoFavorito();
+}
+
+function carregarTiposFiltro() {
+    const filtro = document.getElementById("filtro-tipo");
+    const tipos = [];
+
+    pokemonsCarregados.forEach(function (pokemon) {
+        pokemon.types.forEach(function (item) {
+            const nomeTipo = item.type.name;
+
+            if (!tipos.includes(nomeTipo)) {
+                tipos.push(nomeTipo);
+            }
+        });
+    });
+
+    tipos.forEach(function (tipo) {
+        const option = document.createElement("option");
+
+        option.value = tipo;
+        option.textContent = tipo;
+        filtro.appendChild(option);
+    });
+}
+
+function filtrarPokemons(tipo) {
+    if (tipo === "todos") {
+        mostrarListaPokemons(pokemonsCarregados);
+        return;
+    }
+
+    if (tipo === "favoritos") {
+        const listaFavoritos = pokemonsCarregados.filter(function (pokemon) {
+            return favoritos.includes(pokemon.id);
+        });
+
+        mostrarListaPokemons(listaFavoritos);
+        return;
+    }
+
+    const resultado = pokemonsCarregados.filter(function (pokemon) {
+        return pokemon.types.some(function (item) {
+            return item.type.name === tipo;
+        });
+    });
+
+    mostrarListaPokemons(resultado);
+}
+
+function salvarFavoritos() {
+    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+}
+
+function pokemonEstaFavoritado(id) {
+    return favoritos.includes(id);
+}
+
+function adicionarFavorito(id) {
+    if (!favoritos.includes(id)) {
+        favoritos.push(id);
+        salvarFavoritos();
+    }
+}
+
+function removerFavorito(id) {
+    favoritos = favoritos.filter(function (favoritoId) {
+        return favoritoId !== id;
+    });
+
+    salvarFavoritos();
+}
+
+function atualizarBotaoFavorito() {
+    if (!pokemonAtual) {
+        return;
+    }
+
+    const botao = document.getElementById("botao-favorito");
+
+    if (pokemonEstaFavoritado(pokemonAtual.id)) {
+        botao.textContent = "Remover dos favoritos";
+    } else {
+        botao.textContent = "Adicionar aos favoritos";
+    }
+}
+
+function filtrarLista() {
+    const campoPesquisa = document.querySelector(".campo-pesquisa input");
+    const itens = document.querySelectorAll(".item-pokemon");
+    const textoPesquisa = campoPesquisa.value.toLowerCase();
+
+    itens.forEach(function (item) {
+        item.style.display = item.textContent.toLowerCase().includes(textoPesquisa) ? "block" : "none";
+    });
+}
+
+document.getElementById("filtro-tipo").addEventListener("change", function () {
+    filtrarPokemons(document.getElementById("filtro-tipo").value);
+});
+
+const botaoFavorito = document.getElementById("botao-favorito");
+
+botaoFavorito.addEventListener("click", function () {
+    if (!pokemonAtual) {
+        return;
+    }
+
+    if (pokemonEstaFavoritado(pokemonAtual.id)) {
+        removerFavorito(pokemonAtual.id);
+    } else {
+        adicionarFavorito(pokemonAtual.id);
+    }
+
+    atualizarBotaoFavorito();
+
+    const filtro = document.getElementById("filtro-tipo");
+
+    if (filtro.value === "favoritos") {
+        filtrarPokemons("favoritos");
+    }
+});
+document.querySelector(".campo-pesquisa input").addEventListener("input", filtrarLista);
+
+carregarPokemons();
+
+
+========== ./js/popup.js ==========
+function ativarPopupDesenvolvimento() {
+    const popup = document.getElementById('popup-desenvolvimento');
+    const botaoFechar = document.getElementById('fechar-popup');
+    const elementos = document.querySelectorAll('.em-desenvolvimento');
+
+    if (!popup || !botaoFechar) {
+        return;
+    }
+
+    elementos.forEach(function (elemento) {
+        if (elemento.dataset.popupAtivo === 'true') {
+            return;
+        }
+
+        elemento.dataset.popupAtivo = 'true';
+
+        elemento.addEventListener('click', function (evento) {
+            evento.preventDefault();
+            popup.classList.add('mostrar-popup');
+        });
+    });
+
+    if (popup.dataset.eventosAtivos === 'true') {
+        return;
+    }
+
+    popup.dataset.eventosAtivos = 'true';
+
+    botaoFechar.addEventListener('click', function () {
+        popup.classList.remove('mostrar-popup');
+    });
+
+    popup.addEventListener('click', function (evento) {
+        if (evento.target === popup) {
+            popup.classList.remove('mostrar-popup');
+        }
+    });
+
+    document.addEventListener('keydown', function (evento) {
+        if (evento.key === 'Escape') {
+            popup.classList.remove('mostrar-popup');
+        }
+    });
+}
+
+ativarPopupDesenvolvimento();
+
+
+========== ./js/pesquisa.js ==========
+fetch("./header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.querySelector("#header").innerHTML = data;
+    });
+
+========== ./menu.html ==========
+<aside class="menu_lateral">
+    <div class="cabecalho-menu">
+        <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-menu">
+        <strong>GitPush &amp; Fé</strong>
+        <h2>POKÉDEX</h2>
+        <span>Barra lateral</span>
+    </div>
+
+    <nav>
+        <ul class="menu_lista">
+            <li><a href="index.html" class="menu_item">MENU INICIAL</a></li>
+            <li><a href="pokedex.html" class="menu_item">POKÉDEX</a></li>
+            <li><a href="itens.html" class="menu_item em-desenvolvimento">ITENS</a></li>
+            <li><a href="#" class="menu_item em-desenvolvimento">MAPA</a></li>
+            <li><a href="#" class="menu_item em-desenvolvimento">CONFIGURAÇÕES</a></li>
+        </ul>
+    </nav>
+
+    <div class="pokebola-decoracao">
+        <div class="linha-pokebola"></div>
+        <div class="centro-pokebola"></div>
+    </div>
+
+    <p class="frase-menu">Toda jornada começa com<br>uma boa escolha.</p>
+</aside>
+
+
+========== ./pokedex.html ==========
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/pokedex.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <title>Pokédex - GPF</title>
+</head>
+<body class="pagina-pokedex">
+
+    <!-- menu carregado pelo script.js -->
+    <aside id="menu"></aside>
+
+    <div class="conteudo-principal">
+        <div id="header"></div>
+
+        <main class="area-principal-pokedex">
+            <div class="barra-pesquisa">
+                <div class="campo-pesquisa">
+                    <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar">
+                    <input type="text" placeholder="PESQUISAR POKÉMON">
+                </div>
+
+                <select id="filtro-tipo" class="filtro-tipo" aria-label="Filtrar por tipo">
+                    <option value="todos">Todos os tipos</option>
+                    <option value="favoritos">Favoritos</option>
+                </select>
+            </div>
+
+            <div class="conteudo-pokedex">
+                <section class="painel-pokemon">
+                    <div class="card-pokemon">
+                        <div class="cabecalho-card-pokemon">
+                            <span id="numero-pokemon" class="numero-pokemon">Nº448</span>
+                            <h2 id="nome-pokemon">LUCARIO</h2>
+                        </div>
+
+                        <div class="area-imagem-pokemon">
+                            <img id="imagem-pokemon" src="" alt="Imagem do Pokémon" width="250" height="250">
+                        </div>
+
+                        <div class="informacoes-pokemon">
+                            <div class="dados-pokemon">
+                                <div id="tipos-pokemon" class="tipos-pokemon">
+                                    <strong>TIPO</strong>
+                                </div>
+                                <p>ALTURA: <span id="altura-pokemon">1,2 m</span></p>
+                                <p>PESO: <span id="peso-pokemon">54 kg</span></p>
+                                <p>REGIÃO: SINNOH</p>
+                            </div>
+
+                            <div class="status-pokemon">
+                                <span class="titulo-status">STATUS</span>
+                                <div class="linha-status"><span>PS</span><div class="barra-status"><div id="barra-ps" class="preenchimento ps"></div></div><strong id="status-ps">70</strong></div>
+                                <div class="linha-status"><span>ATK</span><div class="barra-status"><div id="barra-atk" class="preenchimento atk"></div></div><strong id="status-atk">110</strong></div>
+                                <div class="linha-status"><span>DEF</span><div class="barra-status"><div id="barra-def" class="preenchimento def"></div></div><strong id="status-def">70</strong></div>
+                                <div class="linha-status"><span>VEL</span><div class="barra-status"><div id="barra-vel" class="preenchimento vel"></div></div><strong id="status-vel">90</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="botao-favorito" class="botao-favorito" type="button">Adicionar aos favoritos</button>
+                </section>
+
+                <section class="painel-lista">
+                    <div id="lista-pokemon" class="lista-pokemon"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="popup-desenvolvimento" class="popup-fundo">
+        <div class="popup-caixa">
+            <h2>Em desenvolvimento</h2>
+            <p>Esta página ainda está sendo desenvolvida.</p>
+            <button id="fechar-popup" type="button">Fechar</button>
+        </div>
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="js/popup.js"></script>
+    <script src="script.js"></script>
+    <script src="js/pokedex.js"></script>
+</body>
+</html>
+
+
+========== ./script.js ==========
+// Identifica o arquivo atual
+function descobrirArquivoAtual(caminho) {
+    const partesDoCaminho = caminho.split("/");
+    const ultimaPosicao = partesDoCaminho.length - 1;
+
+    return partesDoCaminho[ultimaPosicao] || "index.html";
+
+}
+
+const arquivoAtual = descobrirArquivoAtual(window.location.pathname);
+
+/* Carrega o cabeçalho compartilhado */
+fetch("./header.html")
+.then(function (resposta) {
+if (!resposta.ok) {
+throw new Error("Não foi possível carregar o cabeçalho.");
+}
+
+    return resposta.text();
+})
+.then(function (html) {
+    const areaHeader = document.getElementById("header");
+
+    if (!areaHeader) {
+        return;
+    }
+
+    areaHeader.innerHTML = html;
+})
+.catch(function (erro) {
+    console.error("Erro ao carregar o cabeçalho:", erro);
+});
+
+/* Carrega o menu lateral */
+fetch("./menu.html")
+.then(function (resposta) {
+if (!resposta.ok) {
+throw new Error("Não foi possível carregar o menu.");
+}
+
+    return resposta.text();
+})
+.then(function (conteudo) {
+    const areaDoMenu = document.getElementById("menu");
+
+    if (!areaDoMenu) {
+        return;
+    }
+
+    areaDoMenu.innerHTML = conteudo;
+
+    /* Identifica a página atual no menu */
+    const opcoesMenu = document.querySelectorAll(".menu_item");
+
+    opcoesMenu.forEach(function (opcao) {
+        const arquivoOpcao = descobrirArquivoAtual(
+            new URL(opcao.href).pathname
+        );
+
+        if (arquivoOpcao === arquivoAtual) {
+            opcao.classList.add("ativo");
+        }
+    });
+
+    /* Configura o menu responsivo */
+    const botaoMenu = document.getElementById("botao-menu");
+
+    if (botaoMenu) {
+        const fundoMenu = document.createElement("div");
+
+        fundoMenu.classList.add("fundo-menu");
+        fundoMenu.hidden = true;
+
+        document.body.appendChild(fundoMenu);
+
+        function fecharMenu() {
+            areaDoMenu.classList.remove("menu-aberto");
+            fundoMenu.hidden = true;
+
+            botaoMenu.setAttribute("aria-expanded", "false");
+            botaoMenu.setAttribute(
+                "aria-label",
+                "Abrir menu de navegação"
+            );
+        }
+
+        function alternarMenu() {
+            const menuAberto = areaDoMenu.classList.toggle(
+                "menu-aberto"
+            );
+
+            fundoMenu.hidden = !menuAberto;
+
+            botaoMenu.setAttribute(
+                "aria-expanded",
+                String(menuAberto)
+            );
+
+            botaoMenu.setAttribute(
+                "aria-label",
+                menuAberto
+                    ? "Fechar menu de navegação"
+                    : "Abrir menu de navegação"
+            );
+        }
+
+        botaoMenu.addEventListener("click", alternarMenu);
+        fundoMenu.addEventListener("click", fecharMenu);
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.key === "Escape") {
+                fecharMenu();
+            }
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth >= 768) {
+                fecharMenu();
+            }
+        });
+    }
+
+    /* Ativa os pop-ups de páginas em desenvolvimento */
+    if (typeof ativarPopupDesenvolvimento === "function") {
+        ativarPopupDesenvolvimento();
+    }
+})
+.catch(function (erro) {
+    console.error("Erro ao carregar o menu:", erro);
+});
+
+========== ./header.html ==========
+<header class="topo">
+
+    <!-- Botão do menu lateral -->
+    <button
+        class="botao-menu d-md-none"
+        id="botao-menu"
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-controls="menu"
+        aria-expanded="false"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+        >
+            <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3V2H2zm4 0v12h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6z"/>
+            <path d="M7 4h6v1H7V4zm0 2h6v1H7V6zm0 2h4v1H7V8z"/>
+        </svg>
+    </button>
+
+    <!-- Barra de pesquisa -->
+     <div>
+        <form class="barra-pesquisa-header">
+
+            <select
+                class="categoria-pesquisa"
+                aria-label="Categoria da pesquisa"
+            >
+                <option value="pokemon">Pokémon</option>
+                <option value="itens">Itens</option>
+            </select>
+
+            <input
+                type="search"
+                class="campo-pesquisa-header"
+                placeholder="Pesquise aqui"
+                aria-label="Pesquisar"
+            >
+
+            <button
+                class="botao-pesquisa-header"
+                type="submit"
+                aria-label="Pesquisar"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                width="32" height="32"
+                alt = "pes"
+                fill="currentColor"
+                class="bi bi-search text-white icone-pesquisa"
+                viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            </button>
+
+        </form>
+     </div>
+    <!-- Logo -->
+    <img
+        src="./assets/sprites/logo.png"
+        alt="Logo Pokédex"
+        class="logo-topo"
+    >
+
+</header>
+
+
+========== ./projeto.txt ==========

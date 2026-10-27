@@ -8,52 +8,6 @@
     background-color: #FFFFFF;
 }
 
-/* Cabeçalho */
-.conteudo-principal {
-    flex: 1;
-    min-width: 0;
-}
-
-.topo {
-    height: 76px;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 60px 1fr 60px;
-    align-items: center;
-    padding: 0 28px;
-    color: #FFFFFF;
-    background-color: #17233A;
-    border-bottom: 5px solid #00C2D7;
-}
-
-.topo h1 {
-    margin: 0;
-    text-align: center;
-    font-size: 31px;
-}
-
-.botao-pesquisa {
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-}
-
-.icone-pesquisa {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-.logo-topo {
-    width: 45px;
-    height: 45px;
-    justify-self: end;
-    object-fit: contain;
-}
-
 /* Conteúdo */
 .conteudo {
     width: 100%;
@@ -150,7 +104,7 @@
     line-height: 18px;
 }
 
-.imagem-card {
+/*.imagem-card {
     width: 176px;
     min-width: 176px;
     height: 209px;
@@ -166,7 +120,7 @@
     margin-left: 20px;
     align-self: center;
 }
-
+*/
 .card-base {
     position: relative;
     z-index: 1;
@@ -185,10 +139,30 @@
     object-fit: contain;
 }
 
-/* Responsividade */
-@media (max-width: 760px) {
+/* TELA PEQUENA ou CELULAR */
+@media (max-width: 767.98px) {
+    .topo {
+        grid-template-columns: 40px 40px minmax(0, 1fr) 40px;
+        gap: 6px;
+        padding: 0 12px;
+    }
+
     .topo h1 {
-        font-size: 23px;
+        font-size: clamp(16px, 4vw, 23px);
+        overflow-wrap: anywhere;
+    }
+
+    .botao-menu {
+        justify-self: start;
+    }
+
+    .botao-pesquisa {
+        justify-self: center;
+    }
+
+    .logo-topo {
+        width: 38px;
+        height: 38px;
     }
 
     .conteudo {
