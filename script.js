@@ -1,4 +1,3 @@
-// Identifica o arquivo atual
 function descobrirArquivoAtual(caminho) {
     const partesDoCaminho = caminho.split("/");
     const ultimaPosicao = partesDoCaminho.length - 1;
@@ -9,12 +8,11 @@ function descobrirArquivoAtual(caminho) {
 
 const arquivoAtual = descobrirArquivoAtual(window.location.pathname);
 
-/* Carrega o cabeçalho compartilhado */
 fetch("./header.html")
 .then(function (resposta) {
-if (!resposta.ok) {
-throw new Error("Não foi possível carregar o cabeçalho.");
-}
+    if (!resposta.ok) {
+        throw new Error("Não foi possível carregar o cabeçalho.");
+    }
 
     return resposta.text();
 })
@@ -26,17 +24,40 @@ throw new Error("Não foi possível carregar o cabeçalho.");
     }
 
     areaHeader.innerHTML = html;
+    if (document.body.classList.contains("pagina-pokedex") || document.body.classList.contains("pagina-itens")) {
+        areaHeader.querySelector(".pesquisa-cabecalho").remove();
+        return;
+    }
+    const formularioPesquisa = areaHeader.querySelector(".barra-pesquisa-header");
+    const categoriaPesquisa = formularioPesquisa.querySelector(".categoria-pesquisa");
+    const campoPesquisaHeader = formularioPesquisa.querySelector(".campo-pesquisa-header");
+    const sugestoesHeader = areaHeader.querySelector("#sugestoes-header");
+    const limparSugestoesHeader = prepararSugestoes(campoPesquisaHeader, sugestoesHeader, function () {
+        formularioPesquisa.requestSubmit();
+    }, categoriaPesquisa);
+
+    // O submit atende tanto Enter quanto a lupa, inclusive no cabeçalho carregado por fetch.
+    formularioPesquisa.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        limparSugestoesHeader();
+        const termo = campoPesquisaHeader.value.trim();
+        if (termo === "") {
+            return;
+        }
+        const parametros = new URLSearchParams({ pesquisa: termo });
+        const pagina = categoriaPesquisa.value === "itens" ? "itens.html" : "pokedex.html";
+        window.location.href = pagina + "?" + parametros.toString();
+    });
 })
 .catch(function (erro) {
     console.error("Erro ao carregar o cabeçalho:", erro);
 });
 
-/* Carrega o menu lateral */
 fetch("./menu.html")
 .then(function (resposta) {
-if (!resposta.ok) {
-throw new Error("Não foi possível carregar o menu.");
-}
+    if (!resposta.ok) {
+        throw new Error("Não foi possível carregar o menu.");
+    }
 
     return resposta.text();
 })
@@ -49,7 +70,6 @@ throw new Error("Não foi possível carregar o menu.");
 
     areaDoMenu.innerHTML = conteudo;
 
-    /* Identifica a página atual no menu */
     const opcoesMenu = document.querySelectorAll(".menu_item");
 
     opcoesMenu.forEach(function (opcao) {
@@ -62,7 +82,6 @@ throw new Error("Não foi possível carregar o menu.");
         }
     });
 
-    /* Configura o menu responsivo */
     const botaoMenu = document.getElementById("botao-menu");
 
     if (botaoMenu) {
@@ -120,7 +139,6 @@ throw new Error("Não foi possível carregar o menu.");
         });
     }
 
-    /* Ativa os pop-ups de páginas em desenvolvimento */
     if (typeof ativarPopupDesenvolvimento === "function") {
         ativarPopupDesenvolvimento();
     }

@@ -425,3 +425,40 @@
         transition: none;
     }
 }
+.pesquisa-cabecalho {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.pagina-pokedex .topo .logo-topo,
+.pagina-itens .topo .logo-topo {
+    margin-left: auto;
+}
+
+.sugestoes-pokemon:not(:empty) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border: 2px solid #17233A;
+    border-radius: 8px;
+}
+
+.sugestoes-pokemon button {
+    padding: 10px 12px;
+    text-align: left;
+    color: #17202F;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.sugestoes-pokemon button:hover,
+.sugestoes-pokemon button:focus {
+    background: #D7E9F4;
+}

@@ -23,8 +23,14 @@
         <main class="area-principal-pokedex">
             <div class="barra-pesquisa">
                 <div class="campo-pesquisa">
-                    <img src="./assets/sprites/lupa_icone.png" alt="Pesquisar">
-                    <input type="text" placeholder="PESQUISAR POKÉMON">
+                    <button id="botao-pesquisa" type="button" aria-label="Pesquisar Pokémon">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="10" cy="10" r="7"></circle>
+                            <line x1="15" y1="15" x2="22" y2="22"></line>
+                        </svg>
+                    </button>
+                    <input type="text" placeholder="PESQUISAR NOME OU NÚMERO" aria-label="Pesquisar Pokémon pelo nome ou número e pressionar Enter" aria-controls="sugestoes-pesquisa" autocomplete="off">
+                    <div id="sugestoes-pesquisa" class="sugestoes-pokemon" aria-label="Sugestões de Pokémon"></div>
                 </div>
 
                 <select id="filtro-tipo" class="filtro-tipo" aria-label="Filtrar por tipo">
@@ -42,9 +48,11 @@
                         </div>
 
                         <div class="area-imagem-pokemon">
-                            <img id="imagem-pokemon" src="" alt="Imagem do Pokémon" width="250" height="250">
+                            <img id="imagem-pokemon" alt="Imagem do Pokémon" width="250" height="250" hidden>
+                            <span id="imagem-indisponivel">Imagem indisponível</span>
                         </div>
 
+                        <p id="aviso-imagem" role="status"></p>
                         <div class="informacoes-pokemon">
                             <div class="dados-pokemon">
                                 <div id="tipos-pokemon" class="tipos-pokemon">
@@ -52,7 +60,7 @@
                                 </div>
                                 <p>ALTURA: <span id="altura-pokemon">1,2 m</span></p>
                                 <p>PESO: <span id="peso-pokemon">54 kg</span></p>
-                                <p>REGIÃO: SINNOH</p>
+                                <p>REGIÃO: NÃO INFORMADA</p>
                             </div>
 
                             <div class="status-pokemon">
@@ -69,7 +77,10 @@
                 </section>
 
                 <section class="painel-lista">
-                    <div id="lista-pokemon" class="lista-pokemon"></div>
+                    <p id="resumo-lista" role="status" aria-live="polite">Carregando catálogo...</p>
+                    <div id="lista-pokemon" class="lista-pokemon" tabindex="0" aria-label="Lista de Pokémon"></div>
+                    <p id="mensagem-pokedex" role="status" aria-live="polite"></p>
+                    <button id="tentar-novamente" class="botao-favorito" type="button" hidden>Tentar novamente</button>
                 </section>
             </div>
         </main>
@@ -88,6 +99,7 @@
     </script>
 
     <script src="js/popup.js"></script>
+    <script src="js/pesquisa.js"></script>
     <script src="script.js"></script>
     <script src="js/pokedex.js"></script>
 </body>
