@@ -10,6 +10,8 @@ let favoritosProntos = false;
 let modoLista = "catalogo";
 let salvandoFavorito = false;
 let versaoImagem = 0;
+let versaoEvolucoes = 0;
+const cadeiasEvolucao = {};
 const lista = document.getElementById("lista-pokemon");
 const botaoPesquisa = document.getElementById("botao-pesquisa");
 const botaoTentar = document.getElementById("tentar-novamente");
@@ -39,82 +41,71 @@ async function obterPokemon(id) {
 }
 
 async function carregarPokemons() {
-    if (carregando || !temMais || modoLista !== "catalogo") {
-        return;
-    }
-    // Só a versão atual pode acrescentar páginas; carregando bloqueia pedidos duplicados.
-    const consultaAtual = versaoLista;
-    const tipo = filtroTipo.value;
-    carregando = true;
-    atualizarControles();
-    botaoTentar.hidden = true;
-    mensagemPokedex.textContent = "Carregando Pokémon...";
-    try {
-        let caminho = "/pokemons?inicio=" + inicio;
-        if (tipo !== "todos") {
-            caminho += "&tipo=" + encodeURIComponent(tipo);
+    // Preenche até três páginas quando a lista ainda não permite rolagem.
+    for (let pagina = 0; pagina < 3; pagina++) {
+        if (carregando || !temMais || modoLista !== "catalogo") {
+            return;
         }
-        const dados = await consultarApi(caminho);
+        // Só a versão atual pode acrescentar páginas; carregando bloqueia pedidos duplicados.
+        const consultaAtual = versaoLista;
+        const tipo = filtroTipo.value;
+        carregando = true;
+        atualizarControles();
+        botaoTentar.hidden = true;
+        mensagemPokedex.textContent = "Carregando Pokémon...";
+        try {
+            let caminho = "/pokemons?inicio=" + inicio;
+            if (tipo !== "todos") {
+                caminho += "&tipo=" + encodeURIComponent(tipo);
+            }
+            const dados = await consultarApi(caminho);
+            if (consultaAtual !== versaoLista) {
+                return;
+            }
+            pokemonsCarregados = pokemonsCarregados.concat(dados.pokemons);
+            inicio += dados.pokemons.length;
+            temMais = dados.temMais;
+            mostrarListaPokemons(pokemonsCarregados);
+            resumoLista.textContent = inicio + " de " + dados.total +
+                (tipo === "todos" ? " Pokémon do catálogo." : " Pokémon do tipo " + tipo + ".");
+            mensagemPokedex.textContent = temMais ? "" : "Todos os resultados foram carregados.";
+        } catch (erro) {
+            if (consultaAtual === versaoLista) {
+                mensagemPokedex.textContent = erro.message;
+                botaoTentar.hidden = false;
+            }
+            return;
+        } finally {
+            if (consultaAtual === versaoLista) {
+                carregando = false;
+                atualizarControles();
+            }
+        }
         if (consultaAtual !== versaoLista) {
             return;
         }
-        pokemonsCarregados = pokemonsCarregados.concat(dados.pokemons);
-        inicio += dados.pokemons.length;
-        temMais = dados.temMais;
-        mostrarListaPokemons(pokemonsCarregados);
-        resumoLista.textContent = inicio + " de " + dados.total +
-            (tipo === "todos" ? " Pokémon do catálogo." : " Pokémon do tipo " + tipo + ".");
-        mensagemPokedex.textContent = temMais ? "" : "Todos os resultados foram carregados.";
-    } catch (erro) {
-        if (consultaAtual === versaoLista) {
-            mensagemPokedex.textContent = erro.message;
-            botaoTentar.hidden = false;
+        const listaSemRolagem = lista.clientHeight > 0 &&
+            lista.scrollHeight <= lista.clientHeight;
+        if (!listaSemRolagem || inicio >= 60) {
+            return;
         }
-        return;
-    } finally {
-        if (consultaAtual === versaoLista) {
-            carregando = false;
-            atualizarControles();
-        }
-    }
-    // Completa até três páginas se o painel não permitir rolagem; não repete após erro.
-    if (consultaAtual === versaoLista && temMais && inicio < 60 &&
-        lista.clientHeight > 0 && lista.scrollHeight <= lista.clientHeight) {
-        await carregarPokemons();
     }
 }
 
 async function carregarFavoritos(consultaAtual) {
-    const listaFavoritos = await consultarApi("/favoritos");
+    const ids = lerFavoritosLocais();
     if (consultaAtual !== undefined && consultaAtual !== versaoLista) {
         return [];
     }
-    favoritos = listaFavoritos.map(function (pokemon) { return pokemon.id; });
+    favoritos = ids;
     favoritosProntos = true;
-    return listaFavoritos.map(function (pokemon) {
-        return { id: pokemon.id, name: pokemon.nome };
-    });
-}
+    if (consultaAtual === undefined) return [];
 
-// O backup antigo só é apagado depois que todos os IDs estiverem salvos no servidor.
-async function migrarFavoritosAntigos() {
-    try {
-        const favoritosAntigos = JSON.parse(localStorage.getItem("favoritos") || "[]");
-        if (!Array.isArray(favoritosAntigos)) {
-            throw new Error("A lista antiga de favoritos está em um formato inválido.");
-        }
-
-        for (const id of favoritosAntigos) {
-            if (!favoritos.includes(id)) {
-                const pokemon = await obterPokemon(id);
-                await adicionarFavorito(pokemon);
-            }
-        }
-        localStorage.removeItem("favoritos");
-    } catch (erro) {
-        mensagemPokedex.textContent = "A importação não foi concluída: " + erro.message +
-            " Os favoritos antigos continuam neste navegador. Recarregue a página para tentar novamente.";
-    }
+    // Os nomes são recuperados somente para exibir a lista de favoritos.
+    return Promise.all(ids.map(async function (id) {
+        const pokemon = await obterPokemon(id);
+        return { id: pokemon.id, name: pokemon.name };
+    }));
 }
 
 async function selecionarPokemon(id) {
@@ -245,6 +236,83 @@ function mostrarImagemPokemon(pokemon) {
     tentarProximaImagem();
 }
 
+function criarCartaoEvolucao(evolucao, nomeEspecie, numeroEtapa) {
+    const cartao = document.createElement("button");
+    cartao.type = "button";
+    cartao.classList.add("evolucao-pokemon");
+    cartao.setAttribute("aria-label", "Ver detalhes de " + nomeEspecie);
+    cartao.addEventListener("click", function () {
+        selecionarPokemon(evolucao.id);
+    });
+    const imagem = document.createElement("img");
+    imagem.width = 80;
+    imagem.height = 80;
+    imagem.alt = "Imagem de " + nomeEspecie;
+    const enderecoImagem = evolucao.sprites.other?.["official-artwork"]?.front_default || evolucao.sprites.front_default;
+    if (enderecoImagem) {
+        imagem.src = enderecoImagem;
+        imagem.onerror = function () {
+            this.replaceWith(document.createTextNode("Imagem indisponível"));
+        };
+        cartao.appendChild(imagem);
+    } else {
+        cartao.appendChild(document.createTextNode("Imagem indisponível"));
+    }
+    const nome = document.createElement("strong");
+    nome.textContent = nomeEspecie.toUpperCase();
+    const legenda = document.createElement("span");
+    legenda.textContent = "Etapa " + numeroEtapa;
+    cartao.appendChild(nome);
+    cartao.appendChild(legenda);
+    return cartao;
+}
+
+async function mostrarEvolucoes(pokemon) {
+    // Uma nova seleção impede que uma resposta antiga substitua as evoluções atuais.
+    const consultaAtual = ++versaoEvolucoes;
+    const area = document.getElementById("lista-evolucoes");
+    area.textContent = "Carregando evoluções...";
+    try {
+        let cadeia = cadeiasEvolucao[pokemon.species.name];
+        if (cadeia === undefined) {
+            cadeia = await consultarApi("/evolucoes/" + encodeURIComponent(pokemon.species.name));
+            cadeiasEvolucao[pokemon.species.name] = cadeia;
+        }
+        if (consultaAtual !== versaoEvolucoes) {
+            return;
+        }
+        if (!cadeia || cadeia.evolves_to.length === 0) {
+            area.textContent = "Este Pokémon não possui evolução";
+            return;
+        }
+        const etapas = [{ dados: cadeia, numero: 1 }];
+        const cartoes = [];
+        // Percorre todas as ramificações por etapa, inclusive quando há várias evoluções.
+        for (let indice = 0; indice < etapas.length; indice++) {
+            const etapa = etapas[indice];
+            cadeiasEvolucao[etapa.dados.species.name] = cadeia;
+            const partes = etapa.dados.species.url.split("/");
+            const evolucao = await obterPokemon(Number(partes[partes.length - 2]));
+            if (consultaAtual !== versaoEvolucoes) {
+                return;
+            }
+            const cartao = criarCartaoEvolucao(evolucao, etapa.dados.species.name, etapa.numero);
+            cartoes.push(cartao);
+            for (let proxima = 0; proxima < etapa.dados.evolves_to.length; proxima++) {
+                etapas.push({ dados: etapa.dados.evolves_to[proxima], numero: etapa.numero + 1 });
+            }
+        }
+        area.textContent = "";
+        for (let indice = 0; indice < cartoes.length; indice++) {
+            area.appendChild(cartoes[indice]);
+        }
+    } catch (erro) {
+        if (consultaAtual === versaoEvolucoes) {
+            area.textContent = "Não foi possível carregar as evoluções. Selecione o Pokémon novamente para tentar.";
+        }
+    }
+}
+
 function mostrarPokemon(pokemon) {
     pokemonAtual = pokemon;
 
@@ -253,6 +321,7 @@ function mostrarPokemon(pokemon) {
     document.getElementById("altura-pokemon").textContent = (pokemon.height / 10) + " m";
     document.getElementById("peso-pokemon").textContent = (pokemon.weight / 10) + " kg";
     mostrarImagemPokemon(pokemon);
+    mostrarEvolucoes(pokemon);
 
     const areaTipos = document.getElementById("tipos-pokemon");
     areaTipos.innerHTML = "<strong>TIPO</strong>";
@@ -265,6 +334,20 @@ function mostrarPokemon(pokemon) {
         areaTipos.appendChild(span);
     });
 
+    const habilidades = [];
+    for (const habilidade of pokemon.abilities) {
+        let nome = habilidade.ability.name;
+        if (habilidade.is_hidden) {
+            nome += " (oculta)";
+        }
+        habilidades.push(nome);
+    }
+    document.getElementById("habilidades-pokemon").textContent = habilidades.join(", ");
+
+    document.getElementById("status-atk-especial").textContent = pokemon.stats[3].base_stat;
+    document.getElementById("status-def-especial").textContent = pokemon.stats[4].base_stat;
+    document.getElementById("barra-atk-especial").style.width = Math.min(pokemon.stats[3].base_stat, 100) + "%";
+    document.getElementById("barra-def-especial").style.width = Math.min(pokemon.stats[4].base_stat, 100) + "%";
     document.getElementById("status-ps").textContent = pokemon.stats[0].base_stat;
     document.getElementById("status-atk").textContent = pokemon.stats[1].base_stat;
     document.getElementById("status-def").textContent = pokemon.stats[2].base_stat;
@@ -331,21 +414,12 @@ async function filtrarPokemons() {
     }
 }
 
-async function adicionarFavorito(pokemon) {
-    await consultarApi("/favoritos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: pokemon.id, nome: pokemon.name })
-    });
-
-    favoritos.push(pokemon.id);
+function adicionarFavorito(pokemon) {
+    favoritos = adicionarFavoritoLocal(pokemon.id);
 }
 
-async function removerFavorito(id) {
-    await consultarApi("/favoritos/" + id, { method: "DELETE" });
-    favoritos = favoritos.filter(function (favoritoId) {
-        return favoritoId !== id;
-    });
+function removerFavorito(id) {
+    favoritos = removerFavoritoLocal(id);
 }
 
 function atualizarBotaoFavorito() {
@@ -387,9 +461,9 @@ botaoFavorito.addEventListener("click", async function () {
     atualizarControles();
     try {
         if (favoritos.includes(pokemon.id)) {
-            await removerFavorito(pokemon.id);
+            removerFavorito(pokemon.id);
         } else {
-            await adicionarFavorito(pokemon);
+            adicionarFavorito(pokemon);
         }
         atualizarBotaoFavorito();
         if (modoLista === "favoritos") {
@@ -478,8 +552,14 @@ campoPesquisa.addEventListener("input", function () {
 });
 
 async function iniciarPokedex() {
-    const consultaAtual = versaoLista;
-    await carregarPokemons();
+    const filtroInicial = new URLSearchParams(window.location.search).get("filtro");
+    const consultaAtual = versaoLista + (filtroInicial === "favoritos" ? 1 : 0);
+    if (filtroInicial === "favoritos") {
+        filtroTipo.value = "favoritos";
+        await filtrarPokemons();
+    } else {
+        await carregarPokemons();
+    }
     if (consultaAtual === versaoLista && pokemonsCarregados.length > 0) {
         await selecionarPokemon(pokemonsCarregados[0].id);
     }
@@ -492,7 +572,6 @@ async function iniciarPokedex() {
         if (!favoritosProntos) {
             await carregarFavoritos();
         }
-        await migrarFavoritosAntigos();
         atualizarBotaoFavorito();
     } catch (erro) {
         mensagemPokedex.textContent = "Não foi possível carregar os favoritos: " + erro.message;

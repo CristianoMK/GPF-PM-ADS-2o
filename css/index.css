@@ -14,7 +14,7 @@
     max-width: 1400px;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 60px 40px 77px;
+    padding: 32px 28px;
 }
 
 .conteudo h2 {
@@ -31,16 +31,16 @@
 /* Cards */
 .cards {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
 }
 
 .card {
-    min-height: 248px;
+    min-height: 260px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    padding: 29px;
+    padding: 24px;
     color: #17202F;
     text-decoration: none;
     background-color: #EAF2F7;
@@ -48,18 +48,23 @@
     border-radius: 15px;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-visible {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px #17233A33;
 }
 
 .card-texto {
-    max-width: 330px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
 }
 
 .card h3 {
     margin: 0 0 7px;
-    font-size: 37px;
+    font-size: clamp(24px, 2.6vw, 34px);
+    overflow-wrap: anywhere;
 }
 
 .categoria {
@@ -75,16 +80,12 @@
     color: #69C9BE;
 }
 
-.regiao {
-    color: #1F7AA8;
-}
-
 .sistema {
     color: #D3A700;
 }
 
 .card hr {
-    width: 210px;
+    width: 100%;
     margin: 13px 0 15px;
     border: 0;
     border-top: 2px solid #17202F;
@@ -98,66 +99,32 @@
 
 .seta {
     display: block;
-    margin-top: 18px;
+    margin-top: auto;
+    padding-top: 20px;
     font-size: 42px;
     font-weight: bold;
     line-height: 18px;
 }
 
-/*.imagem-card {
-    width: 176px;
-    min-width: 176px;
-    height: 209px;
-    margin-left: 20px;
-    align-self: center;
-    object-fit: contain;
-}
+@media (min-width: 768px) and (max-width: 1099.98px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-.imagem-card-pokedex {
-    position: relative;
-    width: 176px;
-    height: 209px;
-    margin-left: 20px;
-    align-self: center;
-}
-*/
-.card-base {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.pokemon-card {
-    position: absolute;
-    z-index: 2;
-    top: 23px;
-    left: 18px;
-    width: 143px;
-    height: auto;
-    object-fit: contain;
+    .card:last-child {
+        grid-column: 1 / -1;
+    }
 }
 
 /* TELA PEQUENA ou CELULAR */
 @media (max-width: 767.98px) {
     .topo {
-        grid-template-columns: 40px 40px minmax(0, 1fr) 40px;
         gap: 6px;
         padding: 0 12px;
     }
 
-    .topo h1 {
-        font-size: clamp(16px, 4vw, 23px);
-        overflow-wrap: anywhere;
-    }
-
     .botao-menu {
         justify-self: start;
-    }
-
-    .botao-pesquisa {
-        justify-self: center;
     }
 
     .logo-topo {
@@ -171,5 +138,15 @@
 
     .cards {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card {
+        min-height: 220px;
+        padding: 20px;
+    }
+
+    .conteudo h2 {
+        font-size: 30px;
     }
 }

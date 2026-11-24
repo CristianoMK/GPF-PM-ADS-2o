@@ -5,7 +5,7 @@ const path = require('path');
 const rotas = express.Router();
 const arquivoFavoritos = path.join(__dirname, '..', 'data', 'favoritos.json');
 
-// Os favoritos são compartilhados e persistidos em JSON, sem banco de dados
+
 function lerFavoritos() {
     const dados = fs.readFileSync(arquivoFavoritos, 'utf8');
     const listaFavoritos = JSON.parse(dados);

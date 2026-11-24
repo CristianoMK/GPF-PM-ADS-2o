@@ -16,11 +16,110 @@
 
 <body class="pagina-inicial">
 
-    <!-- menu carregado pelo script.js -->
-    <aside id="menu"></aside>
+    <!-- Menu incorporado para funcionar também em arquivos locais. -->
+    <aside id="menu">
+<aside class="menu_lateral">
+    <div class="cabecalho-menu">
+        <img src="./assets/sprites/logo.png" alt="Logo Pokédex" class="logo-menu">
+        <strong>GitPush &amp; Fé</strong>
+        <h2>POKÉDEX</h2>
+        <span>Barra lateral</span>
+    </div>
+
+    <nav>
+        <ul class="menu_lista">
+            <li><a href="index.html" class="menu_item">MENU INICIAL</a></li>
+            <li><a href="pokedex.html" class="menu_item">POKÉDEX</a></li>
+            <li><a href="itens.html" class="menu_item">ITENS</a></li>
+            <li><a href="pokedex.html?filtro=favoritos" class="menu_item">FAVORITOS</a></li>
+            <li><a href="#" class="menu_item em-desenvolvimento">CONFIGURAÇÕES</a></li>
+        </ul>
+    </nav>
+
+    <div class="pokebola-decoracao">
+        <div class="linha-pokebola"></div>
+        <div class="centro-pokebola"></div>
+    </div>
+
+    <p class="frase-menu">Toda jornada começa com<br>uma boa escolha.</p>
+</aside>
+
+    </aside>
 
     <div class="conteudo-principal">
-        <div id="header"></div>
+        <div id="header">
+<header class="topo">
+
+    <!-- Botão do menu lateral -->
+    <button
+        class="botao-menu d-md-none"
+        id="botao-menu"
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-controls="menu"
+        aria-expanded="false"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+        >
+            <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3V2H2zm4 0v12h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6z"/>
+            <path d="M7 4h6v1H7V4zm0 2h6v1H7V6zm0 2h4v1H7V8z"/>
+        </svg>
+    </button>
+
+    <!-- Barra de pesquisa -->
+    <div class="pesquisa-cabecalho">
+        <form class="barra-pesquisa-header">
+
+            <select
+                class="categoria-pesquisa"
+                aria-label="Categoria da pesquisa"
+            >
+                <option value="pokemon">Pokémon</option>
+                <option value="itens">Itens</option>
+            </select>
+
+            <input
+                type="search"
+                class="campo-pesquisa-header"
+                placeholder="Pesquise aqui"
+                aria-label="Pesquisar"
+                aria-controls="sugestoes-header"
+                autocomplete="off"
+                required
+            >
+
+            <button
+                class="botao-pesquisa-header"
+                type="submit"
+                aria-label="Pesquisar"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                width="32" height="32"
+                fill="currentColor"
+                class="bi bi-search text-white icone-pesquisa"
+                viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            </button>
+
+        </form>
+        <div id="sugestoes-header" class="sugestoes-pokemon" aria-label="Sugestões de Pokémon"></div>
+    </div>
+    <!-- Logo -->
+    <img
+        src="./assets/sprites/logo.png"
+        alt="Logo Pokédex"
+        class="logo-topo"
+    >
+
+</header>
+
+        </div>
 
         <main class="conteudo">
             <h2>Acesso rápido</h2>
@@ -32,7 +131,7 @@
                         <span class="categoria pokemon">POKÉMONS</span>
                         <hr>
                         <p>Explore criaturas com pouco destaque no anime e nos jogos.</p>
-                        <span class="seta">&gt;</span></div>
+                        <span class="seta" aria-hidden="true">&gt;</span></div>
                 </a>
                 <a class="card" href="itens.html">
                     <div class="card-texto">
@@ -40,25 +139,16 @@
                         <span class="categoria catalogo">CATÁLOGO</span>
                         <hr>
                         <p>Consulte imagens, categorias e efeitos dos itens.</p>
-                        <span class="seta">&gt;</span>
+                        <span class="seta" aria-hidden="true">&gt;</span>
                     </div>
                 </a>
-                <a class="card em-desenvolvimento" href="#">
+                <a class="card" href="pokedex.html?filtro=favoritos">
                     <div class="card-texto">
-                        <h3>MAPA</h3>
-                        <span class="categoria regiao">REGIÕES</span>
+                        <h3>FAVORITOS</h3>
+                        <span class="categoria sistema">SUA SELEÇÃO</span>
                         <hr>
-                        <p>Navegue por regiões, rotas e áreas especiais da Pokédex.</p>
-                        <span class="seta">&gt;</span>
-                    </div>
-                </a>
-                <a class="card em-desenvolvimento" href="#">
-                    <div class="card-texto">
-                        <h3>CONFIG</h3>
-                        <span class="categoria sistema">SISTEMA</span>
-                        <hr>
-                        <p>Preferências, tema e progresso do usuário no projeto.</p>
-                        <span class="seta">&gt;</span>
+                        <p>Acesse os Pokémon que você salvou nos favoritos.</p>
+                        <span class="seta" aria-hidden="true">&gt;</span>
                     </div>
                 </a>
             </div>
