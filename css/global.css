@@ -462,3 +462,328 @@
 .sugestoes-pokemon button:focus {
     background: #D7E9F4;
 }
+
+
+/* ==============================
+   BOTÃO CONFIGURAÇÃO DO MENU
+============================== */
+
+.botao-configuracoes {
+    width: 100%;
+    font-family: inherit;
+    text-align: left;
+    background: transparent;
+    cursor: pointer;
+}
+
+.botao-configuracoes:hover {
+    background: #243552;
+}
+
+/* ==============================
+   PAINEL DE CONFIGURAÇÕES
+============================== */
+
+.fundo-configuracoes {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.fundo-configuracoes.configuracoes-abertas {
+    display: flex;
+}
+
+.configuracoes-bloqueadas {
+    overflow: hidden;
+}
+
+.caixa-configuracoes {
+    width: 100%;
+    max-width: 460px;
+
+    padding: 24px;
+
+    color: #17202F;
+    background: #FFFFFF;
+
+    border: 2px solid #00C2D7;
+    border-radius: 16px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+.cabecalho-configuracoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+    padding-bottom: 14px;
+
+    border-bottom: 2px solid #00C2D7;
+}
+
+.cabecalho-configuracoes h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.fechar-configuracoes {
+    width: 35px;
+    height: 35px;
+
+    color: #FFFFFF;
+    font-size: 27px;
+    line-height: 1;
+
+    background: #17233A;
+    border: 0;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.opcao-configuracao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #D5DEE8;
+}
+
+.opcao-configuracao h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.opcao-configuracao p {
+    margin: 0;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.opcao-reiniciar {
+    align-items: center;
+    border-bottom: 0;
+}
+
+/* ==============================
+   INTERRUPTOR DO MODO ESCURO
+============================== */
+
+.interruptor-tema {
+    position: relative;
+    display: inline-block;
+
+    width: 52px;
+    height: 28px;
+
+    flex-shrink: 0;
+}
+
+.interruptor-tema input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.controle-interruptor {
+    position: absolute;
+    inset: 0;
+
+    background: #AAB4C2;
+    border-radius: 30px;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.controle-interruptor::before {
+    content: "";
+
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+
+    width: 20px;
+    height: 20px;
+
+    background: #FFFFFF;
+    border-radius: 50%;
+
+    transition: 0.25s;
+}
+
+.interruptor-tema input:checked + .controle-interruptor {
+    background: #00AFC4;
+}
+
+.interruptor-tema input:checked + .controle-interruptor::before {
+    transform: translateX(24px);
+}
+
+.interruptor-tema input:focus-visible + .controle-interruptor {
+    outline: 3px solid #17233A;
+    outline-offset: 3px;
+}
+
+/* ==============================
+   BOTÃO REINICIAR
+============================== */
+
+.botao-reiniciar {
+    flex-shrink: 0;
+
+    padding: 10px 13px;
+
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+
+    background: #C62828;
+    border: 0;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.botao-reiniciar:hover {
+    background: #9E1F1F;
+}
+
+/* ==============================
+   MODO ESCURO
+============================== */
+
+body.tema-escuro {
+    color: #E8EDF5;
+    background: #101827;
+}
+
+body.tema-escuro .conteudo-principal,
+body.tema-escuro main {
+    color: #E8EDF5;
+}
+
+body.tema-escuro .card,
+body.tema-escuro .card-pokemon,
+body.tema-escuro .painel-pokemon,
+body.tema-escuro .painel-lista {
+    color: #E8EDF5;
+    background-color: #1B293D;
+    border-color: #344761;
+}
+
+body.tema-escuro .card p,
+body.tema-escuro .card h2,
+body.tema-escuro .card h3,
+body.tema-escuro .conteudo h2,
+body.tema-escuro .conteudo p {
+    color: #E8EDF5;
+}
+
+body.tema-escuro input,
+body.tema-escuro select {
+    color: #E8EDF5;
+    background-color: #26364D;
+    border-color: #53647B;
+}
+
+body.tema-escuro input::placeholder {
+    color: #B5C1D1;
+}
+
+body.tema-escuro .lista-pokemon {
+    color: #E8EDF5;
+}
+
+body.tema-escuro .lista-pokemon button {
+    color: #E8EDF5;
+    background-color: #26364D;
+    border-color: #53647B;
+}
+
+body.tema-escuro .sugestoes-pokemon {
+    background: #1B293D;
+    border-color: #53647B;
+}
+
+body.tema-escuro .sugestoes-pokemon button {
+    color: #E8EDF5;
+}
+
+body.tema-escuro .sugestoes-pokemon button:hover,
+body.tema-escuro .sugestoes-pokemon button:focus {
+    background: #344761;
+}
+
+body.tema-escuro .subtitulo,
+body.tema-escuro .dados-item,
+body.tema-escuro .informacoes-pokemon {
+    color: #E8EDF5;
+}
+
+/* O painel de configurações permanece legível nos dois temas. */
+body.tema-escuro .caixa-configuracoes {
+    color: #E8EDF5;
+    background: #1B293D;
+}
+
+body.tema-escuro .opcao-configuracao p {
+    color: #B5C1D1;
+}
+
+body.tema-escuro .opcao-configuracao {
+    border-color: #53647B;
+}
+
+body.tema-escuro .fechar-configuracoes {
+    color: #FFFFFF;
+    background: #344761;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 480px) {
+    .caixa-configuracoes {
+        padding: 18px;
+    }
+
+    .cabecalho-configuracoes h2 {
+        font-size: 18px;
+    }
+
+    .opcao-configuracao {
+        gap: 10px;
+    }
+
+    .opcao-configuracao h3 {
+        font-size: 14px;
+    }
+
+    .opcao-configuracao p {
+        font-size: 12px;
+    }
+
+    .botao-reiniciar {
+        padding: 9px;
+        font-size: 11px;
+    }
+}
