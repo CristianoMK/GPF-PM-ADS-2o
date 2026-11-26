@@ -77,6 +77,7 @@ function mostrarItem(item) {
     }
 }
 
+// Carrega detalhes somente quando um item é selecionado e reutiliza os já recebidos.
 async function selecionarItem(identificador) {
     if (carregandoItens) {
         return;
@@ -88,7 +89,7 @@ async function selecionarItem(identificador) {
     try {
         let item = detalhesItens.find(function (dados) { return String(dados.id) === String(identificador) || dados.nomeOriginal === identificador; });
         if (!item) {
-            item = await consultarApi('/itens/' + encodeURIComponent(identificador));
+            item = await buscarItem(identificador);
             detalhesItens.push(item);
         }
         if (consultaAtual !== versaoListaItens) {
@@ -110,48 +111,50 @@ async function selecionarItem(identificador) {
 }
 
 async function carregarItens() {
-    if (carregandoItens || !temMaisItens || modoListaItens !== 'catalogo') {
-        return;
-    }
-    const consultaAtual = versaoListaItens;
-    const categoria = filtroCategoria.value;
-    carregandoItens = true;
-    atualizarControlesItens();
-    botaoTentarItens.hidden = true;
-    mensagemItens.textContent = 'Carregando itens...';
-    try {
-        let caminho = '/itens?inicio=' + inicioItens;
-        if (categoria !== 'todas') {
-            caminho += '&categoria=' + encodeURIComponent(categoria);
+    // Preenche até três páginas quando a lista ainda não permite rolagem.
+    for (let pagina = 0; pagina < 3; pagina++) {
+        if (carregandoItens || !temMaisItens || modoListaItens !== 'catalogo') {
+            return;
         }
-        const dados = await consultarApi(caminho);
-        // Um filtro novo invalida as páginas antigas que ainda estiverem em trânsito.
+        const consultaAtual = versaoListaItens;
+        const categoria = filtroCategoria.value;
+        carregandoItens = true;
+        atualizarControlesItens();
+        botaoTentarItens.hidden = true;
+        mensagemItens.textContent = 'Carregando itens...';
+        try {
+            const dados = await listarItens(inicioItens, categoria === 'todas' ? '' : categoria);
+            // Um filtro novo invalida as páginas antigas que ainda estiverem em trânsito.
+            if (consultaAtual !== versaoListaItens) {
+                return;
+            }
+            itensCarregados = itensCarregados.concat(dados.itens);
+            inicioItens += dados.itens.length;
+            temMaisItens = dados.temMais;
+            mostrarListaItens();
+            resumoItens.textContent = inicioItens + ' de ' + dados.total + ' itens' +
+                (categoria === 'todas' ? ' do catálogo.' : ' da categoria ' + categoria + '.');
+            mensagemItens.textContent = temMaisItens ? '' : 'Todos os resultados foram carregados.';
+        } catch (erro) {
+            if (consultaAtual === versaoListaItens) {
+                mensagemItens.textContent = erro.message;
+                botaoTentarItens.hidden = false;
+            }
+            return;
+        } finally {
+            if (consultaAtual === versaoListaItens) {
+                carregandoItens = false;
+                atualizarControlesItens();
+            }
+        }
         if (consultaAtual !== versaoListaItens) {
             return;
         }
-        itensCarregados = itensCarregados.concat(dados.itens);
-        inicioItens += dados.itens.length;
-        temMaisItens = dados.temMais;
-        mostrarListaItens();
-        resumoItens.textContent = inicioItens + ' de ' + dados.total + ' itens' +
-            (categoria === 'todas' ? ' do catálogo.' : ' da categoria ' + categoria + '.');
-        mensagemItens.textContent = temMaisItens ? '' : 'Todos os resultados foram carregados.';
-    } catch (erro) {
-        if (consultaAtual === versaoListaItens) {
-            mensagemItens.textContent = erro.message;
-            botaoTentarItens.hidden = false;
+        const listaSemRolagem = listaItens.clientHeight > 0 &&
+            listaItens.scrollHeight <= listaItens.clientHeight;
+        if (!listaSemRolagem || inicioItens >= 60) {
+            return;
         }
-        return;
-    } finally {
-        if (consultaAtual === versaoListaItens) {
-            carregandoItens = false;
-            atualizarControlesItens();
-        }
-    }
-    // Evita uma lista sem rolagem, mas limita esse preenchimento automático a três páginas.
-    if (consultaAtual === versaoListaItens && temMaisItens && inicioItens < 60 &&
-        listaItens.clientHeight > 0 && listaItens.scrollHeight <= listaItens.clientHeight) {
-        await carregarItens();
     }
 }
 
@@ -169,6 +172,7 @@ async function filtrarItens() {
     await carregarItens();
 }
 
+// Procura no índice completo; os detalhes só são carregados para uma escolha exata.
 async function pesquisarItem() {
     limparSugestoesItens();
     const termo = normalizarPesquisa(campoItem.value);
@@ -195,8 +199,13 @@ async function pesquisarItem() {
         modoListaItens = 'pesquisa';
         itensCarregados = exato ? [exato] : resultado.registros;
         mostrarListaItens();
-        resumoItens.textContent = exato ? 'Resultado da pesquisa no catálogo completo.' :
-            resultado.aproximados ? 'Você quis dizer? Selecione um item.' : resultado.registros.length + ' correspondências. Selecione um item.';
+        if (exato) {
+            resumoItens.textContent = 'Resultado da pesquisa no catálogo completo.';
+        } else if (resultado.aproximados) {
+            resumoItens.textContent = 'Você quis dizer? Selecione um item.';
+        } else {
+            resumoItens.textContent = resultado.registros.length + ' correspondências. Selecione um item.';
+        }
         mensagemItens.textContent = '';
         if (exato) {
             // A seleção já faz seu próprio controle de carregamento; aqui não iniciamos outro pedido igual.
@@ -246,7 +255,7 @@ async function iniciarItens() {
         await selecionarItem(itensCarregados[0].id);
     }
     try {
-        const categorias = await consultarApi('/itens/categorias');
+        const categorias = await buscarCategorias();
         categorias.forEach(function (categoria) {
             const opcao = document.createElement('option');
             opcao.value = categoria.name;

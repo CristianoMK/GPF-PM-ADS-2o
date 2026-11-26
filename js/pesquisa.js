@@ -1,15 +1,4 @@
 const pedidosNomes = {};
-const enderecoApi = "http://localhost:3000/api";
-
-async function consultarApi(caminho, opcoes) {
-    const respostaApi = await fetch(enderecoApi + caminho, opcoes);
-    const dados = await respostaApi.json();
-    if (!respostaApi.ok) {
-        throw new Error(dados.erro || "Não foi possível consultar o servidor");
-    }
-    return dados;
-}
-
 function normalizarPesquisa(texto) {
     return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .trim().toLowerCase().replace(/\s+/g, "-");
@@ -18,8 +7,7 @@ function normalizarPesquisa(texto) {
 async function carregarNomes(tipoCatalogo = "pokemon") {
     // Compartilha o mesmo pedido entre sugestões e Enter, permitindo nova tentativa se falhar.
     if (!pedidosNomes[tipoCatalogo]) {
-        const caminho = tipoCatalogo === "itens" ? "/itens/nomes" : "/pokemons/nomes";
-        pedidosNomes[tipoCatalogo] = consultarApi(caminho);
+        pedidosNomes[tipoCatalogo] = listarNomes(tipoCatalogo === "itens" ? "item" : "pokemon");
     }
     try {
         return await pedidosNomes[tipoCatalogo];
@@ -31,20 +19,28 @@ async function carregarNomes(tipoCatalogo = "pokemon") {
 
 // Calcula quantas letras precisam ser inseridas, removidas ou substituídas.
 function distanciaEntrePalavras(primeira, segunda) {
-    let linhaAnterior = [];
+    const distancias = [];
+    for (let linha = 0; linha <= primeira.length; linha++) {
+        distancias[linha] = [linha];
+    }
     for (let coluna = 0; coluna <= segunda.length; coluna++) {
-        linhaAnterior.push(coluna);
+        distancias[0][coluna] = coluna;
     }
+
+    // Cada posição guarda quantas alterações são necessárias até essas letras.
     for (let linha = 1; linha <= primeira.length; linha++) {
-        const linhaAtual = [linha];
         for (let coluna = 1; coluna <= segunda.length; coluna++) {
-            const custo = primeira[linha - 1] === segunda[coluna - 1] ? 0 : 1;
-            linhaAtual[coluna] = Math.min(linhaAnterior[coluna] + 1,
-                linhaAtual[coluna - 1] + 1, linhaAnterior[coluna - 1] + custo);
+            if (primeira[linha - 1] === segunda[coluna - 1]) {
+                distancias[linha][coluna] = distancias[linha - 1][coluna - 1];
+            } else {
+                const removerLetra = distancias[linha - 1][coluna] + 1;
+                const adicionarLetra = distancias[linha][coluna - 1] + 1;
+                const trocarLetra = distancias[linha - 1][coluna - 1] + 1;
+                distancias[linha][coluna] = Math.min(removerLetra, adicionarLetra, trocarLetra);
+            }
         }
-        linhaAnterior = linhaAtual;
     }
-    return linhaAnterior[segunda.length];
+    return distancias[primeira.length][segunda.length];
 }
 
 function encontrarNomes(termo, catalogo) {
@@ -55,18 +51,25 @@ function encontrarNomes(termo, catalogo) {
         return { registros: correspondencias, aproximados: false };
     }
     const limite = termo.length > 7 ? 2 : 1;
-    const proximos = catalogo.map(function (registro) {
-        return { registro: registro, distancia: distanciaEntrePalavras(termo, registro.name) };
-    }).filter(function (item) {
-        return item.distancia <= limite;
-    });
+    const proximos = [];
+    for (const registro of catalogo) {
+        if (Math.abs(registro.name.length - termo.length) > limite) {
+            continue;
+        }
+        const distancia = distanciaEntrePalavras(termo, registro.name);
+        if (distancia <= limite) {
+            proximos.push({ registro: registro, distancia: distancia });
+        }
+    }
     proximos.sort(function (primeiro, segundo) {
         return primeiro.distancia - segundo.distancia;
     });
-    return {
-        registros: proximos.slice(0, 5).map(function (item) { return item.registro; }),
-        aproximados: true
-    };
+
+    const sugestoes = [];
+    for (const item of proximos.slice(0, 5)) {
+        sugestoes.push(item.registro);
+    }
+    return { registros: sugestoes, aproximados: true };
 }
 
 // Cada campo tem seu temporizador e versão; as regras de busca são compartilhadas.
