@@ -17,7 +17,6 @@ const botaoPesquisa = document.getElementById("botao-pesquisa");
 const botaoTentar = document.getElementById("tentar-novamente");
 const mensagemPokedex = document.getElementById("mensagem-pokedex");
 const sugestoesPesquisa = document.getElementById("sugestoes-pesquisa");
-const filtroTipo = document.getElementById("filtro-tipo");
 const campoPesquisa = document.querySelector(".campo-pesquisa input");
 const resumoLista = document.getElementById("resumo-lista");
 function atualizarControles() {
@@ -34,7 +33,7 @@ async function obterPokemon(id) {
         return item.id === id;
     });
     if (!pokemon) {
-        pokemon = await consultarApi("/pokemon/" + id);
+        pokemon = await buscarPokemon(id);
         dadosPokemons.push(pokemon);
     }
     return pokemon;
@@ -48,17 +47,13 @@ async function carregarPokemons() {
         }
         // Só a versão atual pode acrescentar páginas; carregando bloqueia pedidos duplicados.
         const consultaAtual = versaoLista;
-        const tipo = filtroTipo.value;
+        const tipo = tipoSelecionado;
         carregando = true;
         atualizarControles();
         botaoTentar.hidden = true;
         mensagemPokedex.textContent = "Carregando Pokémon...";
         try {
-            let caminho = "/pokemons?inicio=" + inicio;
-            if (tipo !== "todos") {
-                caminho += "&tipo=" + encodeURIComponent(tipo);
-            }
-            const dados = await consultarApi(caminho);
+            const dados = await listarPokemons(inicio, tipo === "todos" ? "" : tipo);
             if (consultaAtual !== versaoLista) {
                 return;
             }
@@ -67,7 +62,7 @@ async function carregarPokemons() {
             temMais = dados.temMais;
             mostrarListaPokemons(pokemonsCarregados);
             resumoLista.textContent = inicio + " de " + dados.total +
-                (tipo === "todos" ? " Pokémon do catálogo." : " Pokémon do tipo " + tipo + ".");
+                (tipo === "todos" ? " Pokémon do catálogo." : " Pokémon do tipo " + tiposPokemon[tipo][0] + ".");
             mensagemPokedex.textContent = temMais ? "" : "Todos os resultados foram carregados.";
         } catch (erro) {
             if (consultaAtual === versaoLista) {
@@ -199,7 +194,7 @@ function mostrarImagemPokemon(pokemon) {
         if (posicao >= imagens.length && !baseConsultada) {
             baseConsultada = true;
             try {
-                const especieBase = await consultarApi("/pokemon/" + pokemon.id + "/imagem-base");
+                const especieBase = await buscarImagemBase(pokemon.id);
                 if (consultaAtual !== versaoImagem) {
                     return;
                 }
@@ -275,7 +270,7 @@ async function mostrarEvolucoes(pokemon) {
     try {
         let cadeia = cadeiasEvolucao[pokemon.species.name];
         if (cadeia === undefined) {
-            cadeia = await consultarApi("/evolucoes/" + encodeURIComponent(pokemon.species.name));
+            cadeia = await buscarEvolucoes(pokemon.species.name);
             cadeiasEvolucao[pokemon.species.name] = cadeia;
         }
         if (consultaAtual !== versaoEvolucoes) {
@@ -327,11 +322,21 @@ function mostrarPokemon(pokemon) {
     areaTipos.innerHTML = "<strong>TIPO</strong>";
 
     pokemon.types.forEach(function (tipo) {
-        const span = document.createElement("span");
-
-        span.classList.add("tipo", "tipo-pokemon");
-        span.textContent = tipo.type.name;
-        areaTipos.appendChild(span);
+        const identificador = tipo.type.name;
+        const dados = tiposPokemon[identificador];
+        const etiqueta = document.createElement("span");
+        etiqueta.classList.add("tipo", "tipo-pokemon");
+        if (dados) {
+            const icone = document.createElement("span");
+            icone.classList.add("icone-tipo", "icone-tipo-atual");
+            icone.style.backgroundColor = dados[1];
+            icone.appendChild(iconeTipo(identificador));
+            etiqueta.appendChild(icone);
+        }
+        const nome = document.createElement("span");
+        nome.textContent = dados ? dados[0] : identificador;
+        etiqueta.appendChild(nome);
+        areaTipos.appendChild(etiqueta);
     });
 
     const habilidades = [];
@@ -361,16 +366,6 @@ function mostrarPokemon(pokemon) {
     atualizarBotaoFavorito();
 }
 
-async function carregarTiposFiltro() {
-    const tipos = await consultarApi("/tipos");
-    tipos.forEach(function (tipo) {
-        const opcao = document.createElement("option");
-        opcao.value = tipo;
-        opcao.textContent = tipo;
-        filtroTipo.appendChild(opcao);
-    });
-}
-
 async function filtrarPokemons() {
     limparSugestoes();
     // Uma troca de filtro invalida as respostas anteriores e reinicia a paginação.
@@ -380,7 +375,7 @@ async function filtrarPokemons() {
     inicio = 0;
     temMais = true;
     pokemonsCarregados = [];
-    modoLista = filtroTipo.value === "favoritos" ? "favoritos" : "catalogo";
+    modoLista = tipoSelecionado === "favoritos" ? "favoritos" : "catalogo";
     lista.innerHTML = "";
     lista.scrollTop = 0;
     botaoTentar.hidden = true;
@@ -400,7 +395,7 @@ async function filtrarPokemons() {
         pokemonsCarregados = listaFavoritos;
         temMais = false;
         mostrarListaPokemons(pokemonsCarregados);
-        resumoLista.textContent = pokemonsCarregados.length + " favoritos salvos (máximo de cinco).";
+        resumoLista.textContent = pokemonsCarregados.length + " favoritos salvos.";
     } catch (erro) {
         if (consultaAtual === versaoLista) {
             mensagemPokedex.textContent = erro.message;
@@ -435,11 +430,6 @@ function atualizarBotaoFavorito() {
         botao.textContent = "Adicionar aos favoritos";
     }
 }
-
-filtroTipo.addEventListener("change", function () {
-    campoPesquisa.value = "";
-    filtrarPokemons();
-});
 
 lista.addEventListener("scroll", verificarRolagem);
 
@@ -513,7 +503,7 @@ async function pesquisarPokemon() {
             mensagemPokedex.textContent = "";
             return;
         }
-        const pokemon = await consultarApi("/pesquisa?nome=" + encodeURIComponent(exato.name));
+        const pokemon = await buscarPokemon(exato.name);
         if (consultaAtual !== versaoLista) {
             return;
         }
@@ -555,18 +545,13 @@ async function iniciarPokedex() {
     const filtroInicial = new URLSearchParams(window.location.search).get("filtro");
     const consultaAtual = versaoLista + (filtroInicial === "favoritos" ? 1 : 0);
     if (filtroInicial === "favoritos") {
-        filtroTipo.value = "favoritos";
+        atualizarFiltroSelecionado("favoritos");
         await filtrarPokemons();
     } else {
         await carregarPokemons();
     }
     if (consultaAtual === versaoLista && pokemonsCarregados.length > 0) {
         await selecionarPokemon(pokemonsCarregados[0].id);
-    }
-    try {
-        await carregarTiposFiltro();
-    } catch (erro) {
-        mensagemPokedex.textContent = "Não foi possível carregar os tipos: " + erro.message;
     }
     try {
         if (!favoritosProntos) {

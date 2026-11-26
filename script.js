@@ -128,17 +128,13 @@ function carregarMenu() {
 
             const filtroOpcao = new URL(opcao.href).searchParams.get("filtro");
             const filtroAtual = new URLSearchParams(window.location.search).get("filtro");
-            if (arquivoOpcao === arquivoAtual && filtroOpcao === filtroAtual &&
-                !opcao.classList.contains("em-desenvolvimento")) {
+            if (arquivoOpcao === arquivoAtual && filtroOpcao === filtroAtual) {
                 opcao.classList.add("ativo");
             }
         });
 
         ativarMenuMobile();
 
-        if (typeof ativarPopupDesenvolvimento === "function") {
-            ativarPopupDesenvolvimento();
-        }
     } catch (erro) {
         console.error("Erro ao carregar o menu:", erro);
     }

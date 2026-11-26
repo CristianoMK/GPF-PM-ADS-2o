@@ -9,7 +9,6 @@
     >
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/pokedex.css">
-    <link rel="stylesheet" href="css/popup.css">
     <title>Pokédex - GPF</title>
 </head>
 <body class="pagina-pokedex">
@@ -30,7 +29,6 @@
             <li><a href="pokedex.html" class="menu_item">POKÉDEX</a></li>
             <li><a href="itens.html" class="menu_item">ITENS</a></li>
             <li><a href="pokedex.html?filtro=favoritos" class="menu_item">FAVORITOS</a></li>
-            <li><a href="#" class="menu_item em-desenvolvimento">CONFIGURAÇÕES</a></li>
         </ul>
     </nav>
 
@@ -132,10 +130,16 @@
                     <div id="sugestoes-pesquisa" class="sugestoes-pokemon" aria-label="Sugestões de Pokémon"></div>
                 </div>
 
-                <select id="filtro-tipo" class="filtro-tipo" aria-label="Filtrar por tipo">
-                    <option value="todos">Todos os tipos</option>
-                    <option value="favoritos">Favoritos</option>
-                </select>
+                <div class="filtro-tipos" id="filtro-tipos">
+                    <button type="button" id="botao-filtro" class="botao-filtro" aria-expanded="false" aria-controls="painel-tipos">
+                        <span class="filtro-atual" id="filtro-atual"></span>
+                        <span class="seta-filtro" aria-hidden="true">⌄</span>
+                    </button>
+                    <div id="painel-tipos" class="painel-tipos" role="group" aria-label="Filtrar Pokémon por tipo" hidden>
+                        <p>Filtrar Pokémon</p>
+                        <div id="opcoes-tipos" class="opcoes-tipos"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="conteudo-pokedex">
@@ -191,21 +195,15 @@
         </main>
     </div>
 
-    <div id="popup-desenvolvimento" class="popup-fundo">
-        <div class="popup-caixa">
-            <h2>Em desenvolvimento</h2>
-            <p>Esta página ainda está sendo desenvolvida.</p>
-            <button id="fechar-popup" type="button">Fechar</button>
-        </div>
-    </div>
-
-    <script
+<script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
-    <script src="js/popup.js"></script>
+    <script src="backend/api.js"></script>
+    <script src="backend/favoritos.js"></script>
     <script src="js/pesquisa.js"></script>
     <script src="script.js"></script>
+    <script src="js/filtro-tipos.js"></script>
     <script src="js/pokedex.js"></script>
 </body>
 </html>

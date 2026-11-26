@@ -89,7 +89,7 @@ async function selecionarItem(identificador) {
     try {
         let item = detalhesItens.find(function (dados) { return String(dados.id) === String(identificador) || dados.nomeOriginal === identificador; });
         if (!item) {
-            item = await consultarApi('/itens/' + encodeURIComponent(identificador));
+            item = await buscarItem(identificador);
             detalhesItens.push(item);
         }
         if (consultaAtual !== versaoListaItens) {
@@ -123,11 +123,7 @@ async function carregarItens() {
         botaoTentarItens.hidden = true;
         mensagemItens.textContent = 'Carregando itens...';
         try {
-            let caminho = '/itens?inicio=' + inicioItens;
-            if (categoria !== 'todas') {
-                caminho += '&categoria=' + encodeURIComponent(categoria);
-            }
-            const dados = await consultarApi(caminho);
+            const dados = await listarItens(inicioItens, categoria === 'todas' ? '' : categoria);
             // Um filtro novo invalida as páginas antigas que ainda estiverem em trânsito.
             if (consultaAtual !== versaoListaItens) {
                 return;
@@ -259,7 +255,7 @@ async function iniciarItens() {
         await selecionarItem(itensCarregados[0].id);
     }
     try {
-        const categorias = await consultarApi('/itens/categorias');
+        const categorias = await buscarCategorias();
         categorias.forEach(function (categoria) {
             const opcao = document.createElement('option');
             opcao.value = categoria.name;

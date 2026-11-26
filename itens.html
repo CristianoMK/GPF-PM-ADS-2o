@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/pokedex.css">
     <link rel="stylesheet" href="css/itens.css">
-    <link rel="stylesheet" href="css/popup.css">
     <title>Catálogo de Itens - GPF</title>
 </head>
 <body class="pagina-itens">
@@ -26,7 +25,6 @@
             <li><a href="pokedex.html" class="menu_item">POKÉDEX</a></li>
             <li><a href="itens.html" class="menu_item">ITENS</a></li>
             <li><a href="pokedex.html?filtro=favoritos" class="menu_item">FAVORITOS</a></li>
-            <li><a href="#" class="menu_item em-desenvolvimento">CONFIGURAÇÕES</a></li>
         </ul>
     </nav>
 
@@ -161,15 +159,9 @@
             </div>
         </main>
     </div>
-    <div id="popup-desenvolvimento" class="popup-fundo">
-        <div class="popup-caixa">
-            <h2>Em desenvolvimento</h2>
-            <p>Esta página ainda está sendo desenvolvida.</p>
-            <button id="fechar-popup" type="button">Fechar</button>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/popup.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend/api.js"></script>
+    <script src="backend/favoritos.js"></script>
     <script src="js/pesquisa.js"></script>
     <script src="script.js"></script>
     <script src="js/itens.js"></script>
